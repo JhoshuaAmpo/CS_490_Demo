@@ -5,5 +5,5 @@ using UnityEngine;
 
 public interface IWeapon
 {
-    Action Attack();
+    void Attack();
 }
