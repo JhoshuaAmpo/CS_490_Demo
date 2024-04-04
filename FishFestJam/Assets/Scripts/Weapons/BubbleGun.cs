@@ -12,21 +12,24 @@ public class BubbleGun : BaseWeapon
         ps = GetComponent<ParticleSystem>();
         var psMain = ps.main;
         psMain.simulationSpeed = AttackSpeed;
+        psMain.startSize = AttackSize;
 
         InitiliazationTest();
     }
     public override void Attack()
     {
-        if(!ps.isPlaying) {
+        if(!ps.emission.enabled) {
             Debug.Log("Bubbles enabled");
-            float tinyStep = 0.000001f;
-            ps.Simulate(tinyStep, true, true, false);
-            ps.Play(); 
+            var emissionModule = ps.emission;
+            ps.Play();
+            emissionModule.enabled = true;
         }
     }
     public override void StopAttack()
     {
         Debug.Log("Done firing!");
+        var emissionModule = ps.emission;
+        emissionModule.enabled = false;
         ps.Stop();
     }
 }

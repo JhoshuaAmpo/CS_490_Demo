@@ -18,13 +18,13 @@ public class PlayerWeaponHandler : MonoBehaviour
    private void Update() {
       foreach (BaseWeapon weapon in weapons)
       {
-         if(playerControls.Abilities.Attack.WasReleasedThisFrame())
+         if(playerControls.Abilities.Attack.IsPressed())
+         {
+            weapon.GetComponent<BaseWeapon>().Attack();
+         }
+         else if(playerControls.Abilities.Attack.WasReleasedThisFrame())
          {
             weapon.GetComponent<BaseWeapon>().StopAttack();
-         }
-         if(playerControls.Abilities.Attack.IsInProgress()) 
-         { 
-            weapon.GetComponent<BaseWeapon>().Attack();
          }
       }
    }

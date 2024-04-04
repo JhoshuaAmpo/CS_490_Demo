@@ -6,7 +6,7 @@ public abstract class BaseWeapon : MonoBehaviour
 {
     public float AttackSpeed;
     public float BaseDamage;
-    public Vector2 AttackSize;
+    public float AttackSize;
 
     // Run at the end of awake
     protected void InitiliazationTest() {
@@ -17,6 +17,10 @@ public abstract class BaseWeapon : MonoBehaviour
          if(AttackSpeed <= 0)
          {
             Debug.LogError($"{this.name} has {AttackSpeed} atk spd");
+         }
+         if(AttackSize <= 0)
+         {
+            Debug.LogError($"{this.name} has {AttackSize} atk size");
          }
     }
     abstract public void Attack();
