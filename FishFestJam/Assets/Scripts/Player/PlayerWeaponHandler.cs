@@ -22,20 +22,17 @@ public class PlayerWeaponHandler : MonoBehaviour
          {
             weapon.GetComponent<BaseWeapon>().StopAttack();
          }
-         if(playerControls.Abilities.Attack.IsPressed()) 
+         if(playerControls.Abilities.Attack.IsInProgress()) 
          { 
             weapon.GetComponent<BaseWeapon>().Attack();
          }
       }
    }
-   /// <summary>
-   /// Will try to add the weapon to the weapons list
-   /// Returns true if it does, false if it can't
-   /// </summary>
-   public bool TryAddWeapon(GameObject weapon)
-   {
-      if(!weapon.TryGetComponent<BaseWeapon>(out var bw)) { return false; }
-      weapons.Add(bw);
-      return true;
-   }
+
+   // public bool TryAddWeapon(GameObject weapon)
+   // {
+   //    if(!weapon.TryGetComponent<BaseWeapon>(out var bw)) { return false; }
+   //    weapons.Add(bw);
+   //    return true;
+   // }
 }
