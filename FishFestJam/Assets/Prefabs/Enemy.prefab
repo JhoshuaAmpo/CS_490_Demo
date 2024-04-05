@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3861328401967427018}
   - component: {fileID: 5483637960842853739}
   m_Layer: 0
-  m_Name: RamFish
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

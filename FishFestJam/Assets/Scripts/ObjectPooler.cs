@@ -17,7 +17,7 @@ public class ObjectPooler : MonoBehaviour
         GameObject tmp;
         for (int i = 0; i < maxObjectCount; i++)
         {
-            tmp = Instantiate<GameObject>(objectToCopy,this.transform);
+            tmp = Instantiate(objectToCopy,this.transform);
             tmp.SetActive(false);
             objectPool.Add(tmp);
         }

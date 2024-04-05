@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RamFishBehavior : EnemyBehavior
 {
+    [SerializeField]
+    private float selfDmg = 5f;
     private void OnCollisionEnter2D(Collision2D other)
     {
         DmgPlayer(other);
@@ -17,7 +19,7 @@ public class RamFishBehavior : EnemyBehavior
     {
         if(other.gameObject.CompareTag("Player")){
             other.gameObject.GetComponent<PlayerHandler>().TakeDamage(AttackDamage);
-            DecreaseHealth(5);
+            DecreaseHealth(selfDmg);
         }
     }
 }

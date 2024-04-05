@@ -22,10 +22,14 @@ public class EnemyBehavior : MonoBehaviour
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        target = PlayerHandler.Instance.gameObject;
+        
         if(HealthPoints <= 0f) { Debug.LogError("Enemy initialized with no HP"); }
         timer = GetComponent<Timer>();
         timer.SetTimer(delayBetweenSwims, () => {SwimTo(target);});
+    }
+
+    private void Start() {
+        target = PlayerHandler.Instance.gameObject;
     }
 
     void Update(){
@@ -53,8 +57,7 @@ public class EnemyBehavior : MonoBehaviour
     private void Death()
     {
         Debug.Log($"{this.name} died");
-        // gameObject.SetActive(false);
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 
     private void SwimTo(GameObject t)
