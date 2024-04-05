@@ -107,6 +107,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ToggleAttack",
+                    "type": "Button",
+                    "id": "4c1d3f1f-2ab4-40ef-9711-9acb447b3a68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Ability1",
                     "type": "Button",
                     "id": "d7860b15-ec90-4187-b437-2640b09e46a1",
@@ -137,8 +146,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "e3219469-bb04-48e4-87e7-741a02c8211a",
-                    "path": "<Keyboard>/space",
+                    "id": "d2b49f44-9be5-4c48-a22b-d73acd6adced",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -176,6 +185,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ability3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88171a4c-4a24-41e2-aead-258f669ec6a6",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -13,6 +13,8 @@ public class PlayerWeaponHandler : MonoBehaviour
       playerControls.Enable();
 
       this.GetComponentsInChildren(weapons);
+
+      playerControls.Abilities.ToggleAttack.performed += ToggleAttack;
    }
 
    private void Update() {
@@ -26,6 +28,13 @@ public class PlayerWeaponHandler : MonoBehaviour
          {
             weapon.GetComponent<BaseWeapon>().StopAttack();
          }
+      }
+   }
+
+   public void ToggleAttack(InputAction.CallbackContext context) {
+      foreach (BaseWeapon weapon in weapons)
+      {
+         weapon.ToggleAttack();
       }
    }
 

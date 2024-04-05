@@ -26,4 +26,6 @@ public abstract class BaseWeapon : MonoBehaviour
     abstract public void Attack();
 
     abstract public void StopAttack();
+
+    abstract public void ToggleAttack();
 }

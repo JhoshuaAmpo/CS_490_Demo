@@ -129,6 +129,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ToggleAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c1d3f1f-2ab4-40ef-9711-9acb447b3a68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Ability1"",
                     ""type"": ""Button"",
                     ""id"": ""d7860b15-ec90-4187-b437-2640b09e46a1"",
@@ -159,8 +168,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""e3219469-bb04-48e4-87e7-741a02c8211a"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""d2b49f44-9be5-4c48-a22b-d73acd6adced"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -200,6 +209,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Ability3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88171a4c-4a24-41e2-aead-258f669ec6a6"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -213,6 +233,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Abilities
         m_Abilities = asset.FindActionMap("Abilities", throwIfNotFound: true);
         m_Abilities_Attack = m_Abilities.FindAction("Attack", throwIfNotFound: true);
+        m_Abilities_ToggleAttack = m_Abilities.FindAction("ToggleAttack", throwIfNotFound: true);
         m_Abilities_Ability1 = m_Abilities.FindAction("Ability1", throwIfNotFound: true);
         m_Abilities_Ability2 = m_Abilities.FindAction("Ability2", throwIfNotFound: true);
         m_Abilities_Ability3 = m_Abilities.FindAction("Ability3", throwIfNotFound: true);
@@ -332,6 +353,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Abilities;
     private List<IAbilitiesActions> m_AbilitiesActionsCallbackInterfaces = new List<IAbilitiesActions>();
     private readonly InputAction m_Abilities_Attack;
+    private readonly InputAction m_Abilities_ToggleAttack;
     private readonly InputAction m_Abilities_Ability1;
     private readonly InputAction m_Abilities_Ability2;
     private readonly InputAction m_Abilities_Ability3;
@@ -340,6 +362,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         private @PlayerControls m_Wrapper;
         public AbilitiesActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Attack => m_Wrapper.m_Abilities_Attack;
+        public InputAction @ToggleAttack => m_Wrapper.m_Abilities_ToggleAttack;
         public InputAction @Ability1 => m_Wrapper.m_Abilities_Ability1;
         public InputAction @Ability2 => m_Wrapper.m_Abilities_Ability2;
         public InputAction @Ability3 => m_Wrapper.m_Abilities_Ability3;
@@ -355,6 +378,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @ToggleAttack.started += instance.OnToggleAttack;
+            @ToggleAttack.performed += instance.OnToggleAttack;
+            @ToggleAttack.canceled += instance.OnToggleAttack;
             @Ability1.started += instance.OnAbility1;
             @Ability1.performed += instance.OnAbility1;
             @Ability1.canceled += instance.OnAbility1;
@@ -371,6 +397,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @ToggleAttack.started -= instance.OnToggleAttack;
+            @ToggleAttack.performed -= instance.OnToggleAttack;
+            @ToggleAttack.canceled -= instance.OnToggleAttack;
             @Ability1.started -= instance.OnAbility1;
             @Ability1.performed -= instance.OnAbility1;
             @Ability1.canceled -= instance.OnAbility1;
@@ -405,6 +434,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IAbilitiesActions
     {
         void OnAttack(InputAction.CallbackContext context);
+        void OnToggleAttack(InputAction.CallbackContext context);
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);
         void OnAbility3(InputAction.CallbackContext context);
