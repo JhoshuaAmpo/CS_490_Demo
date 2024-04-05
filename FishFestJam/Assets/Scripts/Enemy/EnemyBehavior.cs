@@ -13,6 +13,8 @@ public class EnemyBehavior : MonoBehaviour
     protected float delayBetweenSwims = 0f;
     [SerializeField]
     protected float AttackDamage;
+    [SerializeField]
+    protected float turnSpeed = 90f;
 
     public float HealthPoints = 0f;
     protected GameObject target;
@@ -42,7 +44,7 @@ public class EnemyBehavior : MonoBehaviour
             timer.SetTimer(delayBetweenSwims, () => {SwimTo(target);});
         }
         // transform.rotation = Quaternion.LookRotation(new Vector3(dir.x,dir.y,0),Vector3.forward);
-        LookAt(dir);
+        LookAt(target.transform.position);
     }
 
     private void OnParticleCollision(GameObject other) {
@@ -78,13 +80,10 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     protected void LookAt(Vector2 point){
-        float angle = AngleBetweenPoints(transform.position, point);
-        var targetRotation = Quaternion.Euler (new Vector3(0f,0f,angle - 90));
-        transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, Time.deltaTime);
-    }
-    
-    float AngleBetweenPoints(Vector2 a, Vector2 b) {
-        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+        float angle = Vector2.SignedAngle(Vector2.down, dir);
+        var targetRotation = Quaternion.Euler (new Vector3(0f,0f,angle));
+        // transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }
 
     private void OnDrawGizmos() {
