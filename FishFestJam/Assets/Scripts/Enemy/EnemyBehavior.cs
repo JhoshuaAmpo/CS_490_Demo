@@ -8,10 +8,12 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField]
     protected float SwimSpeed = 0f;
     [SerializeField]
-    protected GameObject target;
-    [SerializeField]
     protected float delayBetweenSwims = 0f;
+    [SerializeField]
+    protected float AttackDamage;
+
     public float HealthPoints = 0f;
+    protected GameObject target;
     private Timer timer;
 
     BoxCollider2D boxCollider2D;
@@ -20,10 +22,8 @@ public class EnemyBehavior : MonoBehaviour
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        if(HealthPoints <= 0f)
-        {
-            Debug.LogError("Enemy initialized with no HP");
-        }
+        target = PlayerHandler.Instance.gameObject;
+        if(HealthPoints <= 0f) { Debug.LogError("Enemy initialized with no HP"); }
         timer = GetComponent<Timer>();
         timer.SetTimer(delayBetweenSwims, () => {SwimTo(target);});
     }
@@ -36,7 +36,7 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     private void OnParticleCollision(GameObject other) {
-        Debug.Log($"I, {this.gameObject.name}, have collided with {other.name}");
+        // Debug.Log($"I, {this.gameObject.name}, have collided with {other.name}");
         DecreaseHealth(other.GetComponent<BaseWeapon>().BaseDamage);
     }
 
@@ -52,17 +52,20 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("I died");
-        Destroy(this);
+        Debug.Log($"{this.name} died");
+        // gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 
     private void SwimTo(GameObject t)
     {
         Vector2 dir = (t.transform.position - transform.position).normalized;
-        float angle = Vector2.Angle(dir,rb.velocity.normalized);
-        Debug.Log($"Target: {t.name} is at {t.transform.position}\nSwimming towards: {dir}");
-        Debug.Log($"Angle between Direction: {dir} and Cur Velocity: {rb.velocity} is {angle}");
-        rb.velocity = Vector2.zero;
+        // Debug.Log($"Target: {t.name} is at {t.transform.position}\nSwimming towards: {dir}");
+        // Debug.Log($"Angle between Direction: {dir} and Cur Velocity: {rb.velocity} is {angle}");
+        Vector2 newVel = rb.velocity;
+        if(rb.velocity.x * dir.x < 0) {newVel.x /= 2;}
+        if(rb.velocity.y * dir.y < 0) {newVel.y /= 2;}
+        rb.velocity = newVel;
         rb.AddForce(dir * SwimSpeed,ForceMode2D.Force);
     }
 
