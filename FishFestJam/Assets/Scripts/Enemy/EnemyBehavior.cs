@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D),typeof(Rigidbody2D),typeof(Timer))]
@@ -15,6 +17,7 @@ public class EnemyBehavior : MonoBehaviour
     public float HealthPoints = 0f;
     protected GameObject target;
     private Timer timer;
+    private Vector2 dir;
 
     BoxCollider2D boxCollider2D;
     Rigidbody2D rb;
@@ -33,10 +36,13 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     void Update(){
+        dir = (target.transform.position - transform.position).normalized;
         if(timer.IsTimerComplete())
         {
             timer.SetTimer(delayBetweenSwims, () => {SwimTo(target);});
         }
+        // transform.rotation = Quaternion.LookRotation(new Vector3(dir.x,dir.y,0),Vector3.forward);
+        LookAt(dir);
     }
 
     private void OnParticleCollision(GameObject other) {
@@ -62,7 +68,6 @@ public class EnemyBehavior : MonoBehaviour
 
     private void SwimTo(GameObject t)
     {
-        Vector2 dir = (t.transform.position - transform.position).normalized;
         // Debug.Log($"Target: {t.name} is at {t.transform.position}\nSwimming towards: {dir}");
         // Debug.Log($"Angle between Direction: {dir} and Cur Velocity: {rb.velocity} is {angle}");
         Vector2 newVel = rb.velocity;
@@ -72,10 +77,20 @@ public class EnemyBehavior : MonoBehaviour
         rb.AddForce(dir * SwimSpeed,ForceMode2D.Force);
     }
 
+    protected void LookAt(Vector2 point){
+        float angle = AngleBetweenPoints(transform.position, point);
+        var targetRotation = Quaternion.Euler (new Vector3(0f,0f,angle - 90));
+        transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, Time.deltaTime);
+    }
+    
+    float AngleBetweenPoints(Vector2 a, Vector2 b) {
+        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+    }
+
     private void OnDrawGizmos() {
         if(rb != null)
         {
-            Vector3 dir = (target.transform.position - transform.position).normalized * SwimSpeed;
+            Vector3 dir = (target.transform.position - transform.position).normalized;
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(this.transform.position, this.transform.position + dir);
 
