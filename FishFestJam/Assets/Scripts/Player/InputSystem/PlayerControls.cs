@@ -222,6 +222,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""General"",
+            ""id"": ""cccc054e-e475-4a05-92f4-a7e2cd1ee673"",
+            ""actions"": [
+                {
+                    ""name"": ""PauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc9f3dc8-722d-4926-9fec-07f74b5af64a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""032e5972-d87f-4190-add8-f2d630617f28"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -237,6 +265,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Abilities_Ability1 = m_Abilities.FindAction("Ability1", throwIfNotFound: true);
         m_Abilities_Ability2 = m_Abilities.FindAction("Ability2", throwIfNotFound: true);
         m_Abilities_Ability3 = m_Abilities.FindAction("Ability3", throwIfNotFound: true);
+        // General
+        m_General = asset.FindActionMap("General", throwIfNotFound: true);
+        m_General_PauseMenu = m_General.FindAction("PauseMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -426,6 +457,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public AbilitiesActions @Abilities => new AbilitiesActions(this);
+
+    // General
+    private readonly InputActionMap m_General;
+    private List<IGeneralActions> m_GeneralActionsCallbackInterfaces = new List<IGeneralActions>();
+    private readonly InputAction m_General_PauseMenu;
+    public struct GeneralActions
+    {
+        private @PlayerControls m_Wrapper;
+        public GeneralActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PauseMenu => m_Wrapper.m_General_PauseMenu;
+        public InputActionMap Get() { return m_Wrapper.m_General; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GeneralActions set) { return set.Get(); }
+        public void AddCallbacks(IGeneralActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GeneralActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GeneralActionsCallbackInterfaces.Add(instance);
+            @PauseMenu.started += instance.OnPauseMenu;
+            @PauseMenu.performed += instance.OnPauseMenu;
+            @PauseMenu.canceled += instance.OnPauseMenu;
+        }
+
+        private void UnregisterCallbacks(IGeneralActions instance)
+        {
+            @PauseMenu.started -= instance.OnPauseMenu;
+            @PauseMenu.performed -= instance.OnPauseMenu;
+            @PauseMenu.canceled -= instance.OnPauseMenu;
+        }
+
+        public void RemoveCallbacks(IGeneralActions instance)
+        {
+            if (m_Wrapper.m_GeneralActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGeneralActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GeneralActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GeneralActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GeneralActions @General => new GeneralActions(this);
     public interface IMovementActions
     {
         void OnHorizontal(InputAction.CallbackContext context);
@@ -438,5 +515,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnAbility1(InputAction.CallbackContext context);
         void OnAbility2(InputAction.CallbackContext context);
         void OnAbility3(InputAction.CallbackContext context);
+    }
+    public interface IGeneralActions
+    {
+        void OnPauseMenu(InputAction.CallbackContext context);
     }
 }

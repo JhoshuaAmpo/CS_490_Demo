@@ -49,7 +49,7 @@ public class PlayerHandler : MonoBehaviour
     }
 
     private void Death(){
-        Debug.Log("I died");
+        
     }
 
 }
