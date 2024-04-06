@@ -15,6 +15,8 @@ public class EnemyBehavior : MonoBehaviour
     protected float AttackDamage;
     [SerializeField]
     protected float turnSpeed = 90f;
+    [SerializeField]
+    protected int expDrop = 1;
 
     public float HealthPoints = 0f;
     protected GameObject target;
@@ -65,6 +67,7 @@ public class EnemyBehavior : MonoBehaviour
     private void Death()
     {
         Debug.Log($"{this.name} died");
+        
         gameObject.SetActive(false);
     }
 

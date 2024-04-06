@@ -27,6 +27,17 @@ public class PlayerHandler : MonoBehaviour
         LookAtMouse();
     }
 
+    
+
+    public void TakeDamage(float dmg){
+        HealthPoints -= dmg;
+        Debug.Log($"Ouch! I took {dmg} dmg");
+        if(HealthPoints <= 0)
+        {
+            Death();
+        }
+    }
+
     private void LookAtMouse()
     {
         Vector3 screenMousePos = Mouse.current.position.ReadValue();
@@ -39,17 +50,7 @@ public class PlayerHandler : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), turnSpeed * Time.deltaTime);
     }
 
-    public void TakeDamage(float dmg){
-        HealthPoints -= dmg;
-        Debug.Log($"Ouch! I took {dmg} dmg");
-        if(HealthPoints <= 0)
-        {
-            Death();
-        }
-    }
-
     private void Death(){
         
     }
-
 }
