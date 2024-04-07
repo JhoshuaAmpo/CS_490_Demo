@@ -28,20 +28,19 @@ public class PlayerInputs : MonoBehaviour
     }
 
     // Moves with respect of up pointing towards the top of the screen
-    private void Move() {
-        float moveVelocityX = playerControls.Movement.Horizontal.ReadValue<float>() * moveSpeed;
-        float moveVelocityY = playerControls.Movement.Vertical.ReadValue<float>() * moveSpeed;
-        rb.AddForce(new Vector2(moveVelocityX, moveVelocityY),ForceMode2D.Force);
-    }
+    // private void Move() {
+    //     float moveVelocityX = playerControls.Movement.Horizontal.ReadValue<float>() * moveSpeed;
+    //     float moveVelocityY = playerControls.Movement.Vertical.ReadValue<float>() * moveSpeed;
+    //     rb.AddForce(new Vector2(moveVelocityX, moveVelocityY),ForceMode2D.Force);
+    // }
 
     // Moves with respect of up is where the player is looking
-    // private void Move(){
-    //     Debug.Log($"Up:{transform.up}   Right: {transform.right } ");
-    //     Vector2 newVel = transform.up * playerControls.Movement.Vertical.ReadValue<float>();
-    //     rb.AddForce(newVel * moveSpeed,ForceMode2D.Force);
-    //     Vector2 newVel1 = transform.right * playerControls.Movement.Horizontal.ReadValue<float>();
-    //     rb.AddForce(newVel1 * moveSpeed,ForceMode2D.Force);
-    // }
+    private void Move(){
+        Vector2 newVel = transform.up * playerControls.Movement.Vertical.ReadValue<float>();
+        rb.AddForce(newVel * moveSpeed,ForceMode2D.Force);
+        Vector2 newVel1 = transform.right * playerControls.Movement.Horizontal.ReadValue<float>();
+        rb.AddForce(newVel1 * moveSpeed,ForceMode2D.Force);
+    }
 
     private void LookAtMouse()
     {

@@ -8,7 +8,7 @@ public class PlayerUpgradeHandler : MonoBehaviour
     [SerializeField]
     private float damageMultiplier = 1f;
     [SerializeField]
-    private float BPSMultiplier = 1f;
+    private float BPSAdditive = 1f;
     PlayerWeaponHandler playerWeaponHandler;
     PlayerHandler playerHandler;
     private void Awake() {
@@ -35,12 +35,14 @@ public class PlayerUpgradeHandler : MonoBehaviour
 
     private void UpgradeDamage()
     {
-        playerWeaponHandler.SetAllWeaponMultipliers(damageMultiplier);
+        damageMultiplier *= damageMultiplier;
+        playerWeaponHandler.SetAllWeaponDamageMultipliers(damageMultiplier);
     }
 
     private void UpgradeBPS()
     {
-        playerWeaponHandler.SetAllBPS(BPSMultiplier);
+        BPSAdditive += BPSAdditive;
+        playerWeaponHandler.AddBonusBPS(BPSAdditive);
     }
 
     private void UpgradeRecovery()

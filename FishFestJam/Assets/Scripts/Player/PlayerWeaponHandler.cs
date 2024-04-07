@@ -38,18 +38,18 @@ public class PlayerWeaponHandler : MonoBehaviour
       }
    }
 
-   public void SetAllWeaponMultipliers(float multiplier) {
+   public void SetAllWeaponDamageMultipliers(float multiplier) {
       foreach (BaseWeapon weapon in weapons)
       {
          weapon.WeaponMultiplier = multiplier;
       }
    }
    
-   public void SetAllBPS(float multiplier) {
+   public void AddBonusBPS(float bonus) {
       foreach (BaseWeapon weapon in weapons)
       {
          var mainModule = weapon.GetComponent<ParticleSystem>().main;
-         mainModule.simulationSpeed = multiplier;
+         mainModule.simulationSpeed = weapon.AttackSpeed + bonus;
       }
    }
 

@@ -21,8 +21,20 @@ public class CardSelect : MonoBehaviour
         GetComponentsInChildren<Image>(cards);
     }
 
+    private void OnEnable(){
+        foreach(var card in cards)
+        {
+            card.gameObject.SetActive(true);
+            ChangeCardRGB(card, Color.white);
+        }
+    }
+
     private void OnDisable() {
         confirmButton.gameObject.SetActive(false);
+        foreach(var card in cards)
+        {
+            card.gameObject.SetActive(false);
+        }
     }
 
     public void ChangeCardRGB(Image card, Color color) {
@@ -41,5 +53,7 @@ public class CardSelect : MonoBehaviour
 
     public void ConfirmUpgrade() {
         PlayerHandler.Instance.GetComponent<PlayerUpgradeHandler>().ProcessUpgrade(selectedCard);
+        PauseGame.Instance.Resume();
+        transform.parent.gameObject.SetActive(false);
     }
 }
