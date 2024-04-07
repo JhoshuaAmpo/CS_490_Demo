@@ -6,14 +6,13 @@ public class HUDBarController : MonoBehaviour
 {
     [SerializeField]
     private GameObject bar;
-    [SerializeField][Range(-800,-21)]
-    private float newWidth;
     [SerializeField]
     private float sideBuffer;
+    // Testing variable
+    // [SerializeField][Range(0f,1f)]
+    // float perc;
     private RectTransform barRect;
     private float width;
-    // amount pixels cover per percent
-    private float totalBarLength;
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,13 +27,15 @@ public class HUDBarController : MonoBehaviour
     /// <param name="percent"></param>
     public void SetBarWidth(float percent)
     {
-        Debug.Log($"Percent: {percent}");
+        // Debug.Log($"Percent: {percent}");
         float barLength = -width * (1 - percent);
         barRect.sizeDelta = new Vector2(barLength, barRect.rect.height);
         barRect.localPosition = new Vector2(sideBuffer + (barLength / 2.0f),0);
     }
     // private void Update() {
-    //     barRect.sizeDelta = new Vector2(newWidth, barRect.rect.height);
-    //     barRect.localPosition = new Vector2(sideBuffer + (newWidth / 2.0f),0);
+    //     Debug.Log($"Percent: {perc}");
+    //     float barLength = -width * (1 - perc);
+    //     barRect.sizeDelta = new Vector2(barLength, barRect.rect.height);
+    //     barRect.localPosition = new Vector2(sideBuffer + (barLength / 2.0f),0);
     // }
 }
