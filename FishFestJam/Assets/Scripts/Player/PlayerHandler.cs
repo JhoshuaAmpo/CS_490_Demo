@@ -7,7 +7,10 @@ using UnityEngine.InputSystem;
 public class PlayerHandler : MonoBehaviour
 {
     public static PlayerHandler Instance { get; private set;}
-    public float HealthPoints;
+
+    [SerializeField]
+    private float maxHP = 100;
+    private float HealthPoints;
 
     private void Awake() {
         if (Instance != null && Instance != this) 
@@ -16,24 +19,24 @@ public class PlayerHandler : MonoBehaviour
             return;
         }
         Instance = this;
+        HealthPoints = maxHP;
     }
 
-    
-
-    
+    public void FullRestoreHP(){
+        HealthPoints = maxHP;
+    }
 
     public void TakeDamage(float dmg){
         HealthPoints -= dmg;
-        Debug.Log($"Ouch! I took {dmg} dmg");
         if(HealthPoints <= 0)
         {
             Death();
         }
     }
 
-    
-
     private void Death(){
-        
+        Debug.Log("You lose!");
+        // Pause game
+        // Put HUD up
     }
 }

@@ -22,7 +22,6 @@ public class PauseGame : MonoBehaviour
         else { Destroy(gameObject); }
         playerControls = new();
         playerControls.General.Enable();
-        playerControls.General.PauseMenu.performed += PauseGame.Instance.ToggleMenu;
     }
 
     public void Pause()
@@ -41,11 +40,9 @@ public class PauseGame : MonoBehaviour
         AudioListener.pause = false;
     }
 
-    public void ToggleMenu(InputAction.CallbackContext context)
+    public void TogglePauseMenu(InputAction.CallbackContext context)
     {
-        Debug.Log("escape is being pressed");
         if(!context.performed) { return; }
-        Debug.Log("escape is performed");
         if(isGamePaused) { 
             Resume();
         }

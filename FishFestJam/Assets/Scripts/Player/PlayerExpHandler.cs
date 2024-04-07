@@ -13,9 +13,11 @@ public class PlayerExpHandler : MonoBehaviour
     [SerializeField]
     private float initialLevelThresholdBoost = 1f;
     // At level X, this number is how many Exp they need to level up
+    [SerializeField]
+    private GameObject upgradeScreen;
+
     private List<int> levelThresholds;
     public int Level {get;private set;} = 0;
-
     private int CurrentExp = 0;
 
     private void Awake() {
@@ -23,6 +25,9 @@ public class PlayerExpHandler : MonoBehaviour
         for(int i = 0; i < maxLevel; i++)
         {
             levelThresholds.Add((int)Math.Ceiling(Math.Pow(levelScale,i + initialLevelThresholdBoost)));
+        }
+        if(upgradeScreen == null) { 
+            Debug.LogError("No upgrade screen");
         }
     }
 
@@ -45,6 +50,8 @@ public class PlayerExpHandler : MonoBehaviour
     private void LevelUp()
     {
         Level += 1;
+        PauseGame.Instance.Pause();
+        upgradeScreen.SetActive(true);
         Debug.Log("Congrats players has leveled up!");
     }
 }

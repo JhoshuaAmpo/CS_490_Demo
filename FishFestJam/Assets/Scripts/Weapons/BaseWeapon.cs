@@ -6,6 +6,7 @@ public abstract class BaseWeapon : MonoBehaviour
 {
     public float AttackSpeed;
     public float BaseDamage;
+    public float WeaponMultiplier;
     public float AttackSize;
 
     // Run at the end of awake
@@ -21,6 +22,10 @@ public abstract class BaseWeapon : MonoBehaviour
          if(AttackSize <= 0)
          {
             Debug.LogError($"{this.name} has {AttackSize} atk size");
+         }
+         if(WeaponMultiplier <= 0)
+         {
+            Debug.LogError($"{this.name} has {WeaponMultiplier} weapon multiplier");
          }
     }
     abstract public void Attack();

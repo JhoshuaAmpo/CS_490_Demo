@@ -13,46 +13,35 @@ public class PlayerInputs : MonoBehaviour
     PlayerControls playerControls;
     Rigidbody2D rb;
     Vector3 direction;
-    Vector3 velocity;
-
     private void Awake() {
         playerControls = new();
         playerControls.Movement.Enable();
         
         rb = GetComponent<Rigidbody2D>();
         direction = new();
-        velocity = new();
     }
 
     private void Update() {
+        if(PauseGame.Instance.isGamePaused) { return; }
         LookAtMouse();
         Move();
     }
 
     // Moves with respect of up pointing towards the top of the screen
-    // private void Move() {
-    //     float moveVelocityX = playerControls.Movement.Horizontal.ReadValue<float>() * moveSpeed;
-    //     float moveVelocityY = playerControls.Movement.Vertical.ReadValue<float>() * moveSpeed;
-    //     rb.AddForce(new Vector2(moveVelocityX, moveVelocityY),ForceMode2D.Force);
-    // }
+    private void Move() {
+        float moveVelocityX = playerControls.Movement.Horizontal.ReadValue<float>() * moveSpeed;
+        float moveVelocityY = playerControls.Movement.Vertical.ReadValue<float>() * moveSpeed;
+        rb.AddForce(new Vector2(moveVelocityX, moveVelocityY),ForceMode2D.Force);
+    }
 
     // Moves with respect of up is where the player is looking
-    private void Move(){
-        // // Vector2 horizontalVelocity = playerControls.Movement.Horizontal.ReadValue<float>() * transform.right;
-        // // Vector2 verticalVelocity =  playerControls.Movement.Vertical.ReadValue<float>() * transform.up;
-        // Vector2 inputVec = new(playerControls.Movement.Horizontal.ReadValue<float>(), playerControls.Movement.Vertical.ReadValue<float>());
-        // Vector2 forward = (Vector2)transform.right * (Vector2)transform.up * inputVec;
-        // Debug.Log($"fwd: {forward}");
-        // velocity = forward * moveSpeed;
-        // // rb.AddForce(horizontalVelocity + verticalVelocity,ForceMode2D.Force);
-        // rb.AddForce(velocity,ForceMode2D.Force);
-        Debug.Log($"Up:{transform.up}   Right: {transform.right } ");
-        Vector2 newVel = transform.up * playerControls.Movement.Vertical.ReadValue<float>();
-        rb.AddForce(newVel * moveSpeed,ForceMode2D.Force);
-        Vector2 newVel1 = transform.right * playerControls.Movement.Horizontal.ReadValue<float>();
-        rb.AddForce(newVel1 * moveSpeed,ForceMode2D.Force);
-
-    }
+    // private void Move(){
+    //     Debug.Log($"Up:{transform.up}   Right: {transform.right } ");
+    //     Vector2 newVel = transform.up * playerControls.Movement.Vertical.ReadValue<float>();
+    //     rb.AddForce(newVel * moveSpeed,ForceMode2D.Force);
+    //     Vector2 newVel1 = transform.right * playerControls.Movement.Horizontal.ReadValue<float>();
+    //     rb.AddForce(newVel1 * moveSpeed,ForceMode2D.Force);
+    // }
 
     private void LookAtMouse()
     {

@@ -39,6 +39,7 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     void Update(){
+        if(PauseGame.Instance.isGamePaused) { return; }
         dir = (target.transform.position - transform.position).normalized;
         if(timer.IsTimerComplete())
         {
@@ -50,7 +51,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnParticleCollision(GameObject other) {
         // Debug.Log($"I, {this.gameObject.name}, have collided with {other.name}");
-        DecreaseHealth(other.GetComponent<BaseWeapon>().BaseDamage);
+        DecreaseHealth(other.GetComponent<BaseWeapon>().BaseDamage * other.GetComponent<BaseWeapon>().WeaponMultiplier);
     }
 
     public void DecreaseHealth(float dmg)
