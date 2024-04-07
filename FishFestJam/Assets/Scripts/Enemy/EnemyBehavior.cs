@@ -1,6 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -68,8 +67,10 @@ public class EnemyBehavior : MonoBehaviour
     {
         Debug.Log($"{this.name} died");
         
+        ExpSpawner.Instance.SpawnExp(expDrop, transform.position);
         gameObject.SetActive(false);
     }
+
 
     private void SwimTo(GameObject t)
     {

@@ -21,7 +21,7 @@ public class BubbleGun : BaseWeapon
     public override void Attack()
     {
         if(!ps.emission.enabled) {
-            Debug.Log("Bubbles enabled");
+            // Debug.Log("Bubbles enabled");
             var emissionModule = ps.emission;
             ps.Play();
             emissionModule.enabled = true;
@@ -29,7 +29,7 @@ public class BubbleGun : BaseWeapon
     }
     public override void StopAttack()
     {
-        Debug.Log("Done firing!");
+        // Debug.Log("Done firing!");
         var emissionModule = ps.emission;
         emissionModule.enabled = false;
         ps.Stop();

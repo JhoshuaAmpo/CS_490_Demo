@@ -16,6 +16,7 @@ public class ExpPointBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (!other.CompareTag("Player")) { return; }
         other.GetComponent<PlayerExpHandler>().GainExp(ExpValue);
+        gameObject.SetActive(false);
     }
 
     public void SetExpValue(int exp)

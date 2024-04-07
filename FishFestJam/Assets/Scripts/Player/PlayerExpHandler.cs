@@ -15,7 +15,8 @@ public class PlayerExpHandler : MonoBehaviour
     // At level X, this number is how many Exp they need to level up
     private List<int> levelThresholds;
     public int Level {get;private set;} = 0;
-    public int CurrentExp {get;private set;} = 0;
+
+    private int CurrentExp = 0;
 
     private void Awake() {
         levelThresholds = new();
@@ -43,6 +44,7 @@ public class PlayerExpHandler : MonoBehaviour
 
     private void LevelUp()
     {
+        Level += 1;
         Debug.Log("Congrats players has leveled up!");
     }
 }
