@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
             enemy.SetActive(true);
             int randNum = Random.Range(0,spawnPoints.Count);
             enemy.transform.position = spawnPoints[randNum].position;
-            Debug.Log($"{enemy.name} has spawned on point {randNum}");
+            // Debug.Log($"{enemy.name} has spawned on point {randNum}");
         }
     }
 }

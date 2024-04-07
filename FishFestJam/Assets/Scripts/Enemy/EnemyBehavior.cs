@@ -57,7 +57,7 @@ public class EnemyBehavior : MonoBehaviour
     public void DecreaseHealth(float dmg)
     {
         HealthPoints -= dmg;
-        Debug.Log($"{this.name} hp: {HealthPoints}");
+        // Debug.Log($"{this.name} hp: {HealthPoints}");
         if(HealthPoints <= 0f)
         {
             Death();
@@ -66,7 +66,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log($"{this.name} died");
+        // Debug.Log($"{this.name} died");
         
         ExpSpawner.Instance.SpawnExp(expDrop, transform.position);
         gameObject.SetActive(false);

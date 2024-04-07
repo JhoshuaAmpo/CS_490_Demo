@@ -32,9 +32,24 @@ public class PlayerWeaponHandler : MonoBehaviour
    }
 
    public void ToggleAttack(InputAction.CallbackContext context) {
+      if (!context.performed || PauseGame.Instance.isGamePaused) { return; }
       foreach (BaseWeapon weapon in weapons)
       {
          weapon.ToggleAttack();
+      }
+   }
+
+   public void StopAllAttack() {
+      foreach (BaseWeapon weapon in weapons)
+      {
+         weapon.StopAttack();
+      }
+   }
+
+   public void StartAllAttack() {
+      foreach (BaseWeapon weapon in weapons)
+      {
+         weapon.Attack();
       }
    }
 

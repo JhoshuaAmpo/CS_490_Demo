@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerExpHandler : MonoBehaviour
@@ -15,6 +16,8 @@ public class PlayerExpHandler : MonoBehaviour
     // At level X, this number is how many Exp they need to level up
     [SerializeField]
     private GameObject upgradeScreen;
+    [SerializeField]
+    private HUDBarController expBar;
 
     private List<int> levelThresholds;
     public int Level {get;private set;} = 0;
@@ -41,6 +44,16 @@ public class PlayerExpHandler : MonoBehaviour
 
     public void GainExp(int exp){
         CurrentExp += exp;
+        // Debug.Log($"CurExp: {CurrentExp} / lvlThresh: {levelThresholds[Level]} = {CurrentExp/levelThresholds[Level]}");
+        // if(Level != 0) {
+        //     expBar.SetBarWidth(CurrentExp/(float)levelThresholds[Level]);
+        // }
+        // else
+        // {
+
+        // }
+        float barValue = (Level == 0) ? CurrentExp/(float)levelThresholds[Level] : (CurrentExp - levelThresholds[Level-1])/((float)levelThresholds[Level] - levelThresholds[Level-1]);
+        expBar.SetBarWidth(barValue);
         if(CurrentExp >= levelThresholds[Level])
         {
             LevelUp();
@@ -50,8 +63,9 @@ public class PlayerExpHandler : MonoBehaviour
     private void LevelUp()
     {
         Level += 1;
+        expBar.SetBarWidth(0f);
+        GetComponent<PlayerWeaponHandler>().StopAllAttack();
         PauseGame.Instance.Pause();
         upgradeScreen.SetActive(true);
-        Debug.Log("Congrats players has leveled up!");
     }
 }
