@@ -1424,6 +1424,7 @@ GameObject:
   - component: {fileID: 1530094781}
   - component: {fileID: 1530094782}
   - component: {fileID: 1530094783}
+  - component: {fileID: 1530094784}
   m_Layer: 0
   m_Name: ExpPool
   m_TagString: Untagged
@@ -1471,6 +1472,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 609fa3b32bfd2ad4099471a2a63b819f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1530094784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530094780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d30b51be3b8a074b9207edb9583a0e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1918815815
@@ -1909,7 +1922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5074523208401097268, guid: d7d500299f947fd4188fafc13c5fc7f4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5193535814450349833, guid: d7d500299f947fd4188fafc13c5fc7f4, type: 3}
       propertyPath: spawnPointsParent
