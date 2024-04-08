@@ -3042,7 +3042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5074523208401097268, guid: d7d500299f947fd4188fafc13c5fc7f4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5193535814450349833, guid: d7d500299f947fd4188fafc13c5fc7f4, type: 3}
       propertyPath: spawnPointsParent
