@@ -177,8 +177,9 @@ MonoBehaviour:
   attackDamage: 2
   turnSpeed: 90
   expDrop: 3
-  maxHp: 10
-  HealthPoints: 20
+  maxHp: 5
+  timeBetweenUpgrades: 60
+  HealthPoints: 10
   selfDmg: 5
 --- !u!114 &5483637960842853739
 MonoBehaviour:

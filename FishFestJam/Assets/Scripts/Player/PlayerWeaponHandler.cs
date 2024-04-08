@@ -7,13 +7,13 @@ public class PlayerWeaponHandler : MonoBehaviour
 {
    public List<BaseWeapon> weapons;
    PlayerControls playerControls;
-
+   PlayerAudioHandler playerAudioHandler;
    private void Awake() {
       playerControls = new();
       playerControls.Enable();
 
       this.GetComponentsInChildren(weapons);
-
+      playerAudioHandler = GetComponent<PlayerAudioHandler>();
       playerControls.Abilities.ToggleAttack.performed += ToggleAttack;
    }
 
@@ -22,10 +22,15 @@ public class PlayerWeaponHandler : MonoBehaviour
       {
          if(playerControls.Abilities.Attack.IsPressed())
          {
+            if(!playerAudioHandler.AudioIsPlaying())
+            {
+               playerAudioHandler.PlayAudio();
+            }
             weapon.GetComponent<BaseWeapon>().Attack();
          }
          else if(playerControls.Abilities.Attack.WasReleasedThisFrame())
          {
+            playerAudioHandler.StopAudio();
             weapon.GetComponent<BaseWeapon>().StopAttack();
          }
       }
@@ -33,6 +38,13 @@ public class PlayerWeaponHandler : MonoBehaviour
 
    public void ToggleAttack(InputAction.CallbackContext context) {
       if (!context.performed || PauseGame.Instance.isGamePaused) { return; }
+      if(playerAudioHandler.AudioIsPlaying()) {
+         playerAudioHandler.StopAudio();
+      }
+      else
+      {
+         playerAudioHandler.PlayAudio();
+      }
       foreach (BaseWeapon weapon in weapons)
       {
          weapon.ToggleAttack();
@@ -40,6 +52,7 @@ public class PlayerWeaponHandler : MonoBehaviour
    }
 
    public void StopAllAttack() {
+      playerAudioHandler.StopAudio();
       foreach (BaseWeapon weapon in weapons)
       {
          weapon.StopAttack();
