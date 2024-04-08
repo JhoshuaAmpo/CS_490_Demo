@@ -9,10 +9,13 @@ public class SettingsHandler : MonoBehaviour
     private Slider musicSlider;
     [SerializeField]
     private Slider sfxSlider;
+    [SerializeField]
+    private Toggle altCtrlToggle;
     
     private void Awake() {
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+        altCtrlToggle.isOn = PlayerPrefs.GetInt("AltCtrl") == 1;
     }
 
     public void SaveMusicVolume(float volume)

@@ -647,6 +647,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 420508164}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &257908056 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8103144754754696482, guid: d361167902b92724586dae64569b6f44, type: 3}
+  m_PrefabInstance: {fileID: 1845046357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &412840959
 GameObject:
   m_ObjectHideFlags: 0
@@ -3569,6 +3580,10 @@ PrefabInstance:
       propertyPath: musicSlider
       value: 
       objectReference: {fileID: 1771263369}
+    - target: {fileID: 365470233971723632, guid: d361167902b92724586dae64569b6f44, type: 3}
+      propertyPath: altCtrlToggle
+      value: 
+      objectReference: {fileID: 257908056}
     - target: {fileID: 1485427121784789509, guid: d361167902b92724586dae64569b6f44, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -4434,7 +4449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2005618349882603327, guid: ee5b55995d70d494b88d22b3b11b72d5, type: 3}
       propertyPath: moveSpeed
-      value: 2
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2005618349882603327, guid: ee5b55995d70d494b88d22b3b11b72d5, type: 3}
       propertyPath: turnSpeed
@@ -4523,8 +4538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d76aec85113d84c8a07a5a1b1174d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageMultiplier: 1.5
-  BPSAdditive: 1
+  damageMultiplier: 1.3
+  BPSAdditive: 0.3
 --- !u!114 &2040388050 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2005618349882603327, guid: ee5b55995d70d494b88d22b3b11b72d5, type: 3}
