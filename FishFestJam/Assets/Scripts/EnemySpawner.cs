@@ -9,8 +9,11 @@ public class EnemySpawner : MonoBehaviour
     private float timeBetweenSpawns = 1f;
     [SerializeField]
     private GameObject spawnPointsParent;
+    [SerializeField]
+    private int timeBetweenUpgrades = 60;
     private List<Transform> spawnPoints;
     private Timer timer;
+    bool upgradedAlready = true;
 
     ObjectPooler objectPooler;
     private void Awake() {
@@ -31,6 +34,16 @@ public class EnemySpawner : MonoBehaviour
         if(timer.IsTimerComplete())
         {
             timer.SetTimer(timeBetweenSpawns, () => {SpawnEnemy();});
+        }
+        if(timeBetweenSpawns <= 0.1f) { return; }
+        if(!upgradedAlready && Stopwatch.Instance.GetSeconds() % timeBetweenUpgrades == 0)
+        {
+            timeBetweenSpawns -= 0.1f;
+            upgradedAlready = true;
+        }
+        if(upgradedAlready && Stopwatch.Instance.GetSeconds() % timeBetweenUpgrades != 0)
+        {
+            upgradedAlready = false;
         }
     }
 

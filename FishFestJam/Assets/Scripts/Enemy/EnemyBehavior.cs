@@ -7,20 +7,24 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField]
-    protected float SwimSpeed = 0f;
+    protected float swimSpeed = 0f;
     [SerializeField]
     protected float delayBetweenSwims = 0f;
     [SerializeField]
-    protected float AttackDamage;
+    protected float attackDamage;
     [SerializeField]
     protected float turnSpeed = 90f;
     [SerializeField]
     protected int expDrop = 1;
-
+    [SerializeField]
+    protected float maxHp = 0;
+    [SerializeField]
+    private int timeBetweenUpgrades = 60;
     public float HealthPoints = 0f;
     protected GameObject target;
     private Timer timer;
     private Vector2 dir;
+    bool upgradedAlready = true;
 
     BoxCollider2D boxCollider2D;
     Rigidbody2D rb;
@@ -45,8 +49,16 @@ public class EnemyBehavior : MonoBehaviour
         {
             timer.SetTimer(delayBetweenSwims, () => {SwimTo(target);});
         }
-        // transform.rotation = Quaternion.LookRotation(new Vector3(dir.x,dir.y,0),Vector3.forward);
         LookAt(target.transform.position);
+        if(!upgradedAlready && Stopwatch.Instance.GetSeconds() % timeBetweenUpgrades == 0)
+        {
+            UpgradeFish();
+            upgradedAlready = true;
+        }
+        if(upgradedAlready && Stopwatch.Instance.GetSeconds() % timeBetweenUpgrades != 0)
+        {
+            upgradedAlready = false;
+        }
     }
 
     private void OnParticleCollision(GameObject other) {
@@ -57,7 +69,6 @@ public class EnemyBehavior : MonoBehaviour
     public void DecreaseHealth(float dmg)
     {
         HealthPoints -= dmg;
-        // Debug.Log($"{this.name} hp: {HealthPoints}");
         if(HealthPoints <= 0f)
         {
             Death();
@@ -66,29 +77,27 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Death()
     {
-        // Debug.Log($"{this.name} died");
-        
         ExpSpawner.Instance.SpawnExp(expDrop, transform.position);
         gameObject.SetActive(false);
     }
 
-
     private void SwimTo(GameObject t)
     {
-        // Debug.Log($"Target: {t.name} is at {t.transform.position}\nSwimming towards: {dir}");
-        // Debug.Log($"Angle between Direction: {dir} and Cur Velocity: {rb.velocity} is {angle}");
         Vector2 newVel = rb.velocity;
         if(rb.velocity.x * dir.x < 0) {newVel.x /= 2;}
         if(rb.velocity.y * dir.y < 0) {newVel.y /= 2;}
         rb.velocity = newVel;
-        rb.AddForce(dir * SwimSpeed,ForceMode2D.Force);
+        rb.AddForce(dir * swimSpeed,ForceMode2D.Force);
     }
 
     protected void LookAt(Vector2 point){
         float angle = Vector2.SignedAngle(Vector2.down, dir);
         var targetRotation = Quaternion.Euler (new Vector3(0f,0f,angle));
-        // transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, Time.deltaTime);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+    }
+
+    protected virtual void UpgradeFish(){
+        return;
     }
 
     private void OnDrawGizmos() {
