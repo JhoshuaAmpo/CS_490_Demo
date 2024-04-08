@@ -12,6 +12,10 @@ public class PlayerHandler : MonoBehaviour
     private float maxHP = 100;
     [SerializeField]
     private HUDBarController hpBar;
+    [SerializeField]
+    private GameObject DeathScreen;
+    [SerializeField]
+    private GameObject HUD;
     private float HealthPoints = 0f;
 
     private void Awake() {
@@ -21,6 +25,8 @@ public class PlayerHandler : MonoBehaviour
             return;
         }
         Instance = this;
+        DeathScreen.SetActive(false);
+        HUD.SetActive(true);
     }
 
     private void Start()
@@ -43,8 +49,8 @@ public class PlayerHandler : MonoBehaviour
     }
 
     private void Death(){
-        Debug.Log("You lose!");
-        // Pause game
-        // Put HUD up
+        PauseGame.Instance.Pause();
+        HUD.SetActive(false);
+        DeathScreen.SetActive(true);
     }
 }

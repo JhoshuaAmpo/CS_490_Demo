@@ -7,7 +7,6 @@ public class BorderControl : MonoBehaviour
     float width = 0;
     float height = 0;
     private void Awake() {
-        this.GetComponent<SpriteRenderer>().enabled = false;
         width = transform.localScale.x;
         height = transform.localScale.y;
     }
