@@ -176,7 +176,8 @@ MonoBehaviour:
   delayBetweenSwims: 1
   AttackDamage: 10
   turnSpeed: 90
-  HealthPoints: 10
+  expDrop: 1
+  HealthPoints: 20
   selfDmg: 5
 --- !u!114 &5483637960842853739
 MonoBehaviour:

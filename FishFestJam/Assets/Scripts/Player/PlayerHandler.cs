@@ -12,7 +12,7 @@ public class PlayerHandler : MonoBehaviour
     private float maxHP = 100;
     [SerializeField]
     private HUDBarController hpBar;
-    private float HealthPoints;
+    private float HealthPoints = 0f;
 
     private void Awake() {
         if (Instance != null && Instance != this) 
@@ -21,8 +21,11 @@ public class PlayerHandler : MonoBehaviour
             return;
         }
         Instance = this;
-        HealthPoints = maxHP;
-        hpBar.SetBarWidth(HealthPoints/maxHP);
+    }
+
+    private void Start()
+    {
+        FullRestoreHP();
     }
 
     public void FullRestoreHP(){

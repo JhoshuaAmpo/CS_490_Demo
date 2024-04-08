@@ -6,10 +6,10 @@ public class RamFishBehavior : EnemyBehavior
 {
     [SerializeField]
     private float selfDmg = 5f;
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        DmgPlayer(other);
-    }
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     DmgPlayer(other);
+    // }
 
     private void OnCollisionStay2D(Collision2D other) {
         DmgPlayer(other);
