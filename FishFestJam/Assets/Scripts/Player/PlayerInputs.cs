@@ -13,33 +13,39 @@ public class PlayerInputs : MonoBehaviour
     PlayerControls playerControls;
     Rigidbody2D rb;
     Vector3 direction;
+    bool useAltMove = false;
     private void Awake() {
         playerControls = new();
         playerControls.Movement.Enable();
         
         rb = GetComponent<Rigidbody2D>();
         direction = new();
+        UpdateUseAltMove();
     }
-
+    
     private void Update() {
         if(PauseGame.Instance.isGamePaused) { return; }
         LookAtMouse();
-        Move();
+        if(useAltMove) { AltMove(); }
+        else { Move(); }
     }
 
-    // Moves with respect of up pointing towards the top of the screen
-    // private void Move() {
-    //     float moveVelocityX = playerControls.Movement.Horizontal.ReadValue<float>() * moveSpeed;
-    //     float moveVelocityY = playerControls.Movement.Vertical.ReadValue<float>() * moveSpeed;
-    //     rb.AddForce(new Vector2(moveVelocityX, moveVelocityY),ForceMode2D.Force);
-    // }
-
-    // Moves with respect of up is where the player is looking
+    public void UpdateUseAltMove(){
+        useAltMove = PlayerPrefs.GetInt("AltCtrl") == 1;
+    }
+    // Moves with respect of forward/up is where the player is looking
     private void Move(){
         Vector2 newVel = transform.up * playerControls.Movement.Vertical.ReadValue<float>();
         rb.AddForce(newVel * moveSpeed,ForceMode2D.Force);
         Vector2 newVel1 = transform.right * playerControls.Movement.Horizontal.ReadValue<float>();
         rb.AddForce(newVel1 * moveSpeed,ForceMode2D.Force);
+    }
+
+    // Moves with respect of forward/up pointing towards the top of the screen
+    private void AltMove() {
+        float moveVelocityX = playerControls.Movement.Horizontal.ReadValue<float>() * moveSpeed;
+        float moveVelocityY = playerControls.Movement.Vertical.ReadValue<float>() * moveSpeed;
+        rb.AddForce(new Vector2(moveVelocityX, moveVelocityY),ForceMode2D.Force);
     }
 
     private void LookAtMouse()
@@ -53,7 +59,7 @@ public class PlayerInputs : MonoBehaviour
         Vector3 targetRotation = new(0, 0, targetAngle);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), turnSpeed * Time.deltaTime);
     }
-
+    
     private void OnDrawGizmos() {
         if(transform == null) { return;}
         Gizmos.color = Color.green;

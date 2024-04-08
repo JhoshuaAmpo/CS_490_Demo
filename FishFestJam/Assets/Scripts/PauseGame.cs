@@ -50,7 +50,6 @@ public class PauseGame : MonoBehaviour
         { 
             Pause(); 
         }
-        PauseMenuHUD.SetActive(isGamePaused);
     }
 
     private IEnumerator ResumeGameDelay()

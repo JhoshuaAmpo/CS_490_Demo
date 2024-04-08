@@ -8,13 +8,11 @@ using UnityEngine.PlayerLoop;
 public class BubbleGun : BaseWeapon
 {
     ParticleSystem ps;
-    ParticleSystem.EmissionModule emissionModule;
     private void Awake() {
         ps = GetComponent<ParticleSystem>();
         var psMain = ps.main;
         psMain.simulationSpeed = AttackSpeed;
         psMain.startSize = AttackSize;
-        emissionModule = ps.emission;
 
         InitiliazationTest();
     }
@@ -37,6 +35,7 @@ public class BubbleGun : BaseWeapon
 
     public override void ToggleAttack()
     {
+        var emissionModule = ps.emission;
         emissionModule.enabled = !emissionModule.enabled;
         if(emissionModule.enabled)
         {

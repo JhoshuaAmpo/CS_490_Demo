@@ -1307,7 +1307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1980600502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,23 +1539,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1485427121784789509, guid: d361167902b92724586dae64569b6f44, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2528128581146532721, guid: d361167902b92724586dae64569b6f44, type: 3}
       propertyPath: m_Name
       value: SettingsScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 2528128581146532721, guid: d361167902b92724586dae64569b6f44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3125127768454858352, guid: d361167902b92724586dae64569b6f44, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3713147817222355276, guid: d361167902b92724586dae64569b6f44, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6512393149390969422, guid: d361167902b92724586dae64569b6f44, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6636961241756828504, guid: d361167902b92724586dae64569b6f44, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
