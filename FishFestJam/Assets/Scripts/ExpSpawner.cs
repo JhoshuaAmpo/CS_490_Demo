@@ -20,6 +20,7 @@ public class ExpSpawner : MonoBehaviour
     }
 
     public void SpawnExp(int expDrop, Vector3 spawnPos){
+        if (BorderControl.Instance.IsOutsideBorder(spawnPos)) { return; }
         GameObject exp = objectPooler.GetPooledObject(); 
         if (exp == null) { return; }
         exp.SetActive(true);
