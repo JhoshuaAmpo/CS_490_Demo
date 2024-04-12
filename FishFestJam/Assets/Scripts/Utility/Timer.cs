@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// To have multiple timers in one gameObject create a time variable, set it to AddComponent<Timer>();
+/// </summary>
 public class Timer : MonoBehaviour
 {
     private float time;

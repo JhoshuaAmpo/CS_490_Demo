@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D),typeof(Rigidbody2D),typeof(Timer))]
-public class EnemyBehavior : MonoBehaviour
+public abstract class EnemyBehavior : MonoBehaviour
 {
     [SerializeField]
     protected float swimSpeed = 0f;
@@ -42,22 +42,33 @@ public class EnemyBehavior : MonoBehaviour
         target = PlayerHandler.Instance.gameObject;
     }
 
-    void Update(){
-        if(PauseGame.Instance.isGamePaused) { return; }
-        dir = (target.transform.position - transform.position).normalized;
-        if(timer.IsTimerComplete())
-        {
-            timer.SetTimer(delayBetweenSwims, () => {SwimTo(target);});
-        }
+    void Update()
+    {
+        if (PauseGame.Instance.isGamePaused) { return; }
+
+        Move();
         LookAt(target.transform.position);
-        if(!upgradedAlready && Stopwatch.Instance.GetSeconds() % timeBetweenUpgrades == 0)
+        Upgrade();
+    }
+
+    private void Upgrade()
+    {
+        if (!upgradedAlready && Stopwatch.Instance.GetSeconds() % timeBetweenUpgrades == 0)
         {
             UpgradeFish();
             upgradedAlready = true;
         }
-        if(upgradedAlready && Stopwatch.Instance.GetSeconds() % timeBetweenUpgrades != 0)
+        if (upgradedAlready && Stopwatch.Instance.GetSeconds() % timeBetweenUpgrades != 0)
         {
             upgradedAlready = false;
+        }
+    }
+
+    private void Move()
+    {
+        if (timer.IsTimerComplete())
+        {
+            timer.SetTimer(delayBetweenSwims, () => { SwimTo(target); });
         }
     }
 
@@ -84,6 +95,7 @@ public class EnemyBehavior : MonoBehaviour
     private void SwimTo(GameObject t)
     {
         Vector2 newVel = rb.velocity;
+        dir = (target.transform.position - transform.position).normalized;
         if(rb.velocity.x * dir.x < 0) {newVel.x /= 2;}
         if(rb.velocity.y * dir.y < 0) {newVel.y /= 2;}
         rb.velocity = newVel;

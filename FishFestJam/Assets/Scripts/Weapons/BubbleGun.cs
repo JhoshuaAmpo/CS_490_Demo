@@ -25,6 +25,7 @@ public class BubbleGun : BaseWeapon
             emissionModule.enabled = true;
         }
     }
+
     public override void StopAttack()
     {
         // Debug.Log("Done firing!");
