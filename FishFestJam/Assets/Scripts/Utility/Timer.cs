@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour
     private float time;
     private Action timerCallBack;
     public void SetTimer(float time, Action timerCallBack) {
+        if(!IsTimerComplete()) { return;}
         this.time = time;
         this.timerCallBack = timerCallBack;
     }

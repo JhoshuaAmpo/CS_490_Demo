@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class TrainingDummy : EnemyBehavior
 {
-    private void Awake() {
-
-    }
+    
 }

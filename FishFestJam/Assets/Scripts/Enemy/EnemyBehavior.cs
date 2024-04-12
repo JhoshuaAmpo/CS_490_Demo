@@ -18,27 +18,23 @@ public abstract class EnemyBehavior : MonoBehaviour
     protected int expDrop = 1;
     [SerializeField]
     protected float maxHp = 0;
-    [SerializeField]
-    private int timeBetweenUpgrades = 60;
     public float HealthPoints = 0f;
     protected GameObject target;
-    private Timer timer;
+    private Timer swimTimer;
     private Vector2 dir;
-    bool upgradedAlready = true;
 
     BoxCollider2D boxCollider2D;
     Rigidbody2D rb;
-    void Awake()
+    protected virtual void Awake()
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        
         if(HealthPoints <= 0f) { Debug.LogError("Enemy initialized with no HP"); }
-        timer = GetComponent<Timer>();
-        timer.SetTimer(delayBetweenSwims, () => {SwimTo(target);});
+        swimTimer = GetComponent<Timer>();
+        swimTimer.SetTimer(delayBetweenSwims, () => {SwimTo(target);});
     }
 
-    private void Start() {
+    protected virtual void Start() {
         target = PlayerHandler.Instance.gameObject;
     }
 
@@ -48,27 +44,14 @@ public abstract class EnemyBehavior : MonoBehaviour
 
         Move();
         LookAt(target.transform.position);
-        Upgrade();
-    }
-
-    private void Upgrade()
-    {
-        if (!upgradedAlready && Stopwatch.Instance.GetSeconds() % timeBetweenUpgrades == 0)
-        {
-            UpgradeFish();
-            upgradedAlready = true;
-        }
-        if (upgradedAlready && Stopwatch.Instance.GetSeconds() % timeBetweenUpgrades != 0)
-        {
-            upgradedAlready = false;
-        }
+        UpgradeAll();
     }
 
     private void Move()
     {
-        if (timer.IsTimerComplete())
+        if (swimTimer.IsTimerComplete())
         {
-            timer.SetTimer(delayBetweenSwims, () => { SwimTo(target); });
+            swimTimer.SetTimer(delayBetweenSwims, () => { SwimTo(target); });
         }
     }
 
@@ -108,7 +91,7 @@ public abstract class EnemyBehavior : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }
 
-    protected virtual void UpgradeFish(){
+    protected virtual void UpgradeAll(){
         return;
     }
 

@@ -177,10 +177,37 @@ MonoBehaviour:
   attackDamage: 2
   turnSpeed: 90
   expDrop: 3
-  maxHp: 5
-  timeBetweenUpgrades: 60
+  maxHp: 10
   HealthPoints: 10
   selfDmg: 5
+  swimSpeedUpgradeData:
+    TimeBetweenUpgrades: 0
+    AddendValue: 0
+    MultiplierValue: 0
+  delayBetweenSwimsUpgradeData:
+    TimeBetweenUpgrades: 1
+    AddendValue: 0
+    MultiplierValue: 1
+  attackDamageUpgradeData:
+    TimeBetweenUpgrades: 1
+    AddendValue: 0
+    MultiplierValue: 1
+  turnSpeedUpgradeData:
+    TimeBetweenUpgrades: 1
+    AddendValue: 0
+    MultiplierValue: 1
+  expDropUpgradeData:
+    TimeBetweenUpgrades: 60
+    AddendValue: 1
+    MultiplierValue: 1
+  maxHpUpgradeData:
+    TimeBetweenUpgrades: 30
+    AddendValue: 5
+    MultiplierValue: 1.5
+  selfDmgUpgradeData:
+    TimeBetweenUpgrades: 60
+    AddendValue: -1
+    MultiplierValue: 1
 --- !u!114 &5483637960842853739
 MonoBehaviour:
   m_ObjectHideFlags: 0
