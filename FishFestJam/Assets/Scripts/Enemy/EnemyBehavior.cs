@@ -49,10 +49,7 @@ public abstract class EnemyBehavior : MonoBehaviour
 
     private void Move()
     {
-        if (swimTimer.IsTimerComplete())
-        {
-            swimTimer.SetTimer(delayBetweenSwims, () => { SwimTo(target); });
-        }
+        swimTimer.SetTimer(delayBetweenSwims, () => { SwimTo(target); });
     }
 
     private void OnParticleCollision(GameObject other) {

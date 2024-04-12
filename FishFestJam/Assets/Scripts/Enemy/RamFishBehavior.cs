@@ -3,17 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// [Serializable]
-// public class TempTuple {
-//     public string time;
-//     public float val;
-//     public TempTuple (string t, float v) {
-//         time = t;
-//         val = v;
-//     }
-    
-// }
-
 [Serializable]
 public class UpgradeData {
     [Tooltip("In Seconds")][Min(1)]
@@ -23,13 +12,24 @@ public class UpgradeData {
     public float AddendValue = 0f;
     [Tooltip("Default: 1\nFormula: baseVal * MultiplierValue + AddendValue")][Min(0f)]
     public float MultiplierValue = 1f;
+    public enum ClampOptions{min, max, none}
+    public ClampOptions IsClamp = ClampOptions.none;
+    public float ClampVal = 0;
 
     // private List<TempTuple> upgradeChart = new();
     public List<String> upgradeChart = new();
     public void SetUpUpgradeChart(float baseVal) {
         for(int time = 0;time <= 600; time += TimeBetweenUpgrades) {
-            upgradeChart.Add(new($"{time/60:00}:{time%60:00} - {baseVal}"));
+            upgradeChart.Add(new($"{time/60:00}:{time%60:00} => {baseVal}"));
             baseVal = baseVal * MultiplierValue + AddendValue;
+            if(IsClamp == ClampOptions.max)
+            {
+                baseVal = MathF.Min(baseVal, ClampVal);
+            }
+            else if(IsClamp == ClampOptions.min)
+            {
+                baseVal = MathF.Max(baseVal, ClampVal);
+            }
         }
     }
 }
@@ -72,18 +72,12 @@ public class RamFishBehavior : EnemyBehavior
         expDropUpgradeTimer = this.gameObject.AddComponent<Timer>();
         maxHpUpgradeTimer = this.gameObject.AddComponent<Timer>();
         selfDmgUpgradeTimer = this.gameObject.AddComponent<Timer>();
-
-        // while(this)
-        // {
-        //     UpgradeAll();
-        // }
     }
 
     protected override void Start()
     {
         base.Start();
         SetUpAllUpgradeCharts();
-
     }
 
     private void SetUpAllUpgradeCharts()
@@ -110,24 +104,42 @@ public class RamFishBehavior : EnemyBehavior
     }
 
     protected override void UpgradeAll(){
-        swimSpeedUpgradeTimer.SetTimer(swimSpeedUpgradeData.TimeBetweenUpgrades, () => {swimSpeed = LinearUpgradeFormula(swimSpeed,swimSpeedUpgradeData);});
-        attackDamageUpgradeTimer.SetTimer(attackDamageUpgradeData.TimeBetweenUpgrades, () => {attackDamage = LinearUpgradeFormula(attackDamage,attackDamageUpgradeData);});
-        delayBetweenSwimsUpgradeTimer.SetTimer(delayBetweenSwimsUpgradeData.TimeBetweenUpgrades, () => {delayBetweenSwims = LinearUpgradeFormula(delayBetweenSwims,delayBetweenSwimsUpgradeData);});
-        turnSpeedUpgradeTimer.SetTimer(turnSpeedUpgradeData.TimeBetweenUpgrades, () => {turnSpeed = LinearUpgradeFormula(turnSpeed,turnSpeedUpgradeData);});
-        expDropUpgradeTimer.SetTimer(expDropUpgradeData.TimeBetweenUpgrades, () => {expDrop = LinearUpgradeFormula(expDrop,expDropUpgradeData);});
-        maxHpUpgradeTimer.SetTimer(maxHpUpgradeData.TimeBetweenUpgrades, () => {maxHp = LinearUpgradeFormula(maxHp,maxHpUpgradeData);});
-        selfDmgUpgradeTimer.SetTimer(selfDmgUpgradeData.TimeBetweenUpgrades, () => {selfDmg = LinearUpgradeFormula(selfDmg,selfDmgUpgradeData);});
+        swimSpeedUpgradeTimer.SetTimer(         swimSpeedUpgradeData.TimeBetweenUpgrades,           () => {swimSpeed            = LinearUpgradeFormula(swimSpeed,swimSpeedUpgradeData);});
+        attackDamageUpgradeTimer.SetTimer(      attackDamageUpgradeData.TimeBetweenUpgrades,        () => {attackDamage         = LinearUpgradeFormula(attackDamage,attackDamageUpgradeData);});
+        delayBetweenSwimsUpgradeTimer.SetTimer( delayBetweenSwimsUpgradeData.TimeBetweenUpgrades,   () => {delayBetweenSwims    = LinearUpgradeFormula(delayBetweenSwims,delayBetweenSwimsUpgradeData);});
+        turnSpeedUpgradeTimer.SetTimer(         turnSpeedUpgradeData.TimeBetweenUpgrades,           () => {turnSpeed            = LinearUpgradeFormula(turnSpeed,turnSpeedUpgradeData);});
+        expDropUpgradeTimer.SetTimer(           expDropUpgradeData.TimeBetweenUpgrades,             () => {expDrop              = LinearUpgradeFormula(expDrop,expDropUpgradeData);});
+        maxHpUpgradeTimer.SetTimer(             maxHpUpgradeData.TimeBetweenUpgrades,               () => {maxHp                = LinearUpgradeFormula(maxHp,maxHpUpgradeData);});
+        selfDmgUpgradeTimer.SetTimer(           selfDmgUpgradeData.TimeBetweenUpgrades,             () => {selfDmg              = LinearUpgradeFormula(selfDmg,selfDmgUpgradeData);});
         DebugLogEnemyStats();
     }
 
     private float LinearUpgradeFormula(float baseVal, UpgradeData upgradeData)
     {
-        return baseVal * upgradeData.MultiplierValue + upgradeData.AddendValue;
+        float product = baseVal * upgradeData.MultiplierValue + upgradeData.AddendValue;
+        if(upgradeData.IsClamp == UpgradeData.ClampOptions.max)
+        {
+            return MathF.Min(product, upgradeData.ClampVal);
+        }
+        else if(upgradeData.IsClamp == UpgradeData.ClampOptions.min)
+        {
+            return MathF.Max(product, upgradeData.ClampVal);
+        }
+        return product;
     }
 
     private int LinearUpgradeFormula(int baseVal, UpgradeData upgradeData)
     {
-        return Mathf.FloorToInt(baseVal * upgradeData.MultiplierValue) + Mathf.CeilToInt(upgradeData.AddendValue);
+        int product = Mathf.FloorToInt(baseVal * upgradeData.MultiplierValue) + Mathf.CeilToInt(upgradeData.AddendValue);
+        if(upgradeData.IsClamp == UpgradeData.ClampOptions.max)
+        {
+            return Math.Min(product, (int)upgradeData.ClampVal);
+        }
+        else if(upgradeData.IsClamp == UpgradeData.ClampOptions.min)
+        {
+            return Math.Max(product, (int)upgradeData.ClampVal);
+        }
+        return product;
     }
 
     private void DebugLogEnemyStats()

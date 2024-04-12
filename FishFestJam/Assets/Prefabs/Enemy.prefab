@@ -184,30 +184,51 @@ MonoBehaviour:
     TimeBetweenUpgrades: 0
     AddendValue: 0
     MultiplierValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    upgradeChart: []
   delayBetweenSwimsUpgradeData:
     TimeBetweenUpgrades: 1
     AddendValue: 0
     MultiplierValue: 1
+    IsClamp: 2
+    ClampVal: 0
+    upgradeChart: []
   attackDamageUpgradeData:
     TimeBetweenUpgrades: 1
     AddendValue: 0
     MultiplierValue: 1
+    IsClamp: 2
+    ClampVal: 0
+    upgradeChart: []
   turnSpeedUpgradeData:
     TimeBetweenUpgrades: 1
     AddendValue: 0
     MultiplierValue: 1
+    IsClamp: 2
+    ClampVal: 0
+    upgradeChart: []
   expDropUpgradeData:
     TimeBetweenUpgrades: 60
     AddendValue: 1
     MultiplierValue: 1
+    IsClamp: 2
+    ClampVal: 0
+    upgradeChart: []
   maxHpUpgradeData:
     TimeBetweenUpgrades: 30
     AddendValue: 5
     MultiplierValue: 1.5
+    IsClamp: 2
+    ClampVal: 0
+    upgradeChart: []
   selfDmgUpgradeData:
     TimeBetweenUpgrades: 60
     AddendValue: -1
     MultiplierValue: 1
+    IsClamp: 0
+    ClampVal: 1
+    upgradeChart: []
 --- !u!114 &5483637960842853739
 MonoBehaviour:
   m_ObjectHideFlags: 0
