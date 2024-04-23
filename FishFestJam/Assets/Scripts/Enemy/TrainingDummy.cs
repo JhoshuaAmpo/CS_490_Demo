@@ -8,7 +8,6 @@ public class TrainingDummy : EnemyBehavior
     float damageCount = 0f;
     protected override void Awake()
     {
-        Debug.Log("Child Awake called");
         DPStimer = GetComponent<Timer>();
         DPStimer.SetTimer(1, () => {DisplayDPS();});
     }

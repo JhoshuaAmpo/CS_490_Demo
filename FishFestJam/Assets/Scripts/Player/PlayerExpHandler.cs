@@ -60,6 +60,10 @@ public class PlayerExpHandler : MonoBehaviour
         }
     }
 
+    public void CheatLevelUp(){
+        LevelUp();
+    }
+
     private void LevelUp()
     {
         Level += 1;
