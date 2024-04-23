@@ -18,8 +18,8 @@ public abstract class EnemyBehavior : MonoBehaviour
     protected int expDrop = 1;
     [SerializeField]
     protected float maxHp = 0;
-    public float HealthPoints = 0f;
     protected GameObject target;
+    private float HealthPoints = 0f;
     private Timer swimTimer;
     private Vector2 dir;
 
@@ -29,7 +29,7 @@ public abstract class EnemyBehavior : MonoBehaviour
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        if(HealthPoints <= 0f) { Debug.LogError("Enemy initialized with no HP"); }
+        HealthPoints = maxHp;
         swimTimer = GetComponent<Timer>();
         swimTimer.SetTimer(delayBetweenSwims, () => {SwimTo(target);});
     }
@@ -38,13 +38,16 @@ public abstract class EnemyBehavior : MonoBehaviour
         target = PlayerHandler.Instance.gameObject;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (PauseGame.Instance.isGamePaused) { return; }
-
         Move();
         LookAt(target.transform.position);
         UpgradeAll();
+    }
+    protected virtual void OnParticleCollision(GameObject other) {
+        // Debug.Log($"I, {this.gameObject.name}, have collided with {other.name}");
+        DecreaseHealth(other.GetComponent<BaseWeapon>().BaseDamage * other.GetComponent<BaseWeapon>().WeaponMultiplier);
     }
 
     private void Move()
@@ -52,10 +55,7 @@ public abstract class EnemyBehavior : MonoBehaviour
         swimTimer.SetTimer(delayBetweenSwims, () => { SwimTo(target); });
     }
 
-    private void OnParticleCollision(GameObject other) {
-        // Debug.Log($"I, {this.gameObject.name}, have collided with {other.name}");
-        DecreaseHealth(other.GetComponent<BaseWeapon>().BaseDamage * other.GetComponent<BaseWeapon>().WeaponMultiplier);
-    }
+    
 
     public void DecreaseHealth(float dmg)
     {
