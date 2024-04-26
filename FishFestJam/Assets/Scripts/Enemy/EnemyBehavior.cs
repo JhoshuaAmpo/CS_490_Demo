@@ -8,20 +8,21 @@ public abstract class EnemyBehavior : MonoBehaviour
 {
     // [SerializeField]
     // protected float swimSpeed = 0f;
+    [Header("Base Stats")]
     [SerializeField]
     protected EnemyStat swimSpeed;
     [SerializeField]
-    protected float delayBetweenSwims = 0f;
+    protected EnemyStat delayBetweenSwims;
     [SerializeField]
-    protected float attackDamage;
+    protected EnemyStat attackDamage;
     [SerializeField]
-    protected float turnSpeed = 90f;
+    protected EnemyStat turnSpeed;
     [SerializeField]
-    protected int expDrop = 1;
+    protected EnemyStat expDrop;
     [SerializeField]
-    protected float maxHp = 0;
+    protected EnemyStat maxHp;
     protected GameObject target;
-    private float HealthPoints = 0f;
+    private float HealthPoints;
     private Timer swimTimer;
 
     BoxCollider2D boxCollider2D;
@@ -30,11 +31,16 @@ public abstract class EnemyBehavior : MonoBehaviour
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-        HealthPoints = maxHp;
+        HealthPoints = maxHp.Value;
         swimTimer = GetComponent<Timer>();
-        swimTimer.SetTimer(delayBetweenSwims, () => {SwimPattern(target);});
+        swimTimer.SetTimer(delayBetweenSwims.Value, () => {SwimPattern(target);});
 
-        swimSpeed.Initialize(gameObject.AddComponent<Timer>());
+        swimSpeed        .Initialize("swimSpeed", gameObject.AddComponent<Timer>());
+        delayBetweenSwims.Initialize("delayBetweenSwims", gameObject.AddComponent<Timer>());
+        attackDamage     .Initialize("attackDamage", gameObject.AddComponent<Timer>());
+        turnSpeed        .Initialize("turnSpeed", gameObject.AddComponent<Timer>());
+        maxHp            .Initialize("maxHP", gameObject.AddComponent<Timer>());
+        expDrop          .Initialize("expDrop", gameObject.AddComponent<Timer>());
     }
 
     protected virtual void Start() {
@@ -64,12 +70,12 @@ public abstract class EnemyBehavior : MonoBehaviour
 
     private void Death()
     {
-        ExpSpawner.Instance.SpawnExp(expDrop, transform.position);
+        ExpSpawner.Instance.SpawnExp((int)expDrop.Value, transform.position);
         gameObject.SetActive(false);
     }
     protected void Move()
     {
-        swimTimer.SetTimer(delayBetweenSwims, () => { SwimPattern(target); });
+        swimTimer.SetTimer(delayBetweenSwims.Value, () => { SwimPattern(target); });
     }
     protected virtual void SwimPattern(GameObject t) { return; }
 
@@ -77,12 +83,16 @@ public abstract class EnemyBehavior : MonoBehaviour
         Vector2 dir = (target.transform.position - transform.position).normalized;
         float angle = Vector2.SignedAngle(Vector2.down, dir);
         var targetRotation = Quaternion.Euler (new Vector3(0f,0f,angle));
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed.Value * Time.deltaTime);
     }
 
     protected virtual void UpgradeAllStats(){
-        swimSpeed.statTimer.SetTimer(swimSpeed.TimeBetweenUpgrades, () => {swimSpeed.UpgradeStat();});
-        Debug.Log("SwimSpeed upgraded: " + swimSpeed.StatValue);
+        swimSpeed        .statTimer.SetTimer(swimSpeed.TimeBetweenUpgrades, () => {swimSpeed.UpgradeStat();});      
+        delayBetweenSwims.statTimer.SetTimer(delayBetweenSwims.TimeBetweenUpgrades, () => {delayBetweenSwims.UpgradeStat();});  
+        attackDamage     .statTimer.SetTimer(attackDamage.TimeBetweenUpgrades, () => {attackDamage.UpgradeStat();});  
+        turnSpeed        .statTimer.SetTimer(turnSpeed.TimeBetweenUpgrades, () => {turnSpeed.UpgradeStat();});  
+        maxHp            .statTimer.SetTimer(maxHp.TimeBetweenUpgrades, () => {maxHp.UpgradeStat();});
+        expDrop          .statTimer.SetTimer(expDrop.TimeBetweenUpgrades, () => {expDrop.UpgradeStat();});
     }
 
     private void OnDrawGizmos() {

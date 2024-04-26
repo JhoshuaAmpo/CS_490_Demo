@@ -15,7 +15,7 @@ public class RamFishBehavior : EnemyBehavior
     private void DmgPlayer(Collision2D other)
     {
         if(other.gameObject.CompareTag("Player")){
-            other.gameObject.GetComponent<PlayerHandler>().TakeDamage(attackDamage);
+            other.gameObject.GetComponent<PlayerHandler>().TakeDamage(attackDamage.Value);
             DecreaseHealth(selfDmg);
         }
     }
@@ -28,6 +28,6 @@ public class RamFishBehavior : EnemyBehavior
         if(rb.velocity.x * dir.x < 0) {newVel.x /= 2;}
         if(rb.velocity.y * dir.y < 0) {newVel.y /= 2;}
         rb.velocity = newVel;
-        rb.AddForce(dir * swimSpeed.StatValue,ForceMode2D.Force);
+        rb.AddForce(dir * swimSpeed.Value,ForceMode2D.Force);
     }
 }

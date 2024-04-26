@@ -7,7 +7,7 @@ using UnityEngine;
 [Serializable]
 public class EnemyStat
 {
-    public float StatValue = 0f;
+    public float Value = 0f;
     public bool IsInt = false;
     [Header("Upgrade values")]
 
@@ -22,21 +22,24 @@ public class EnemyStat
     public float ClampVal = 0;
     public Timer statTimer;
     private List<String> upgradeChart = new();
+    private string name;
 
     public void UpgradeStat(){
-        StatValue = (IsInt) ? LinearUpgradeFormula((int)StatValue) : LinearUpgradeFormula(StatValue);
+        Value = (IsInt) ? LinearUpgradeFormula((int)Value) : LinearUpgradeFormula(Value);
+        Debug.Log($"{name} upgraded: {Value}");
     }
 
     public void UpgradeStat(ref float val){
         val = (IsInt) ? LinearUpgradeFormula((int)val) : LinearUpgradeFormula(val);
     }
 
-    public void Initialize(Timer t){
+    public void Initialize(string n, Timer t){
         SetUpUpgradeChart();
         statTimer = t;
+        name = n;
     }
     public void SetUpUpgradeChart() {
-        float tempVal = StatValue;
+        float tempVal = Value;
         int time = 0;
         upgradeChart.Add(new($"{time/60:00}:{time%60:00} => {tempVal}"));
         for(;time <= 600; time += TimeBetweenUpgrades) {
