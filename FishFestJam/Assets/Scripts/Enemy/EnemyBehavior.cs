@@ -43,19 +43,16 @@ public abstract class EnemyBehavior : MonoBehaviour
         if (PauseGame.Instance.isGamePaused) { return; }
         Move();
         LookAt(target.transform.position);
-        UpgradeAll();
     }
     protected virtual void OnParticleCollision(GameObject other) {
         // Debug.Log($"I, {this.gameObject.name}, have collided with {other.name}");
         DecreaseHealth(other.GetComponent<BaseWeapon>().BaseDamage * other.GetComponent<BaseWeapon>().WeaponMultiplier);
     }
 
-    private void Move()
+    protected void Move()
     {
         swimTimer.SetTimer(delayBetweenSwims, () => { SwimTo(target); });
     }
-
-    
 
     public void DecreaseHealth(float dmg)
     {
@@ -72,7 +69,7 @@ public abstract class EnemyBehavior : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void SwimTo(GameObject t)
+    protected void SwimTo(GameObject t)
     {
         Vector2 newVel = rb.velocity;
         dir = (target.transform.position - transform.position).normalized;
@@ -86,10 +83,6 @@ public abstract class EnemyBehavior : MonoBehaviour
         float angle = Vector2.SignedAngle(Vector2.down, dir);
         var targetRotation = Quaternion.Euler (new Vector3(0f,0f,angle));
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-    }
-
-    protected virtual void UpgradeAll(){
-        return;
     }
 
     private void OnDrawGizmos() {

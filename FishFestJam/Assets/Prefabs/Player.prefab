@@ -4858,13 +4858,13 @@ GameObject:
   - component: {fileID: 600491297118016266}
   - component: {fileID: 9171694602711666117}
   - component: {fileID: 8000864286716948140}
+  - component: {fileID: 7502778883024959165}
+  - component: {fileID: 1296908618571297790}
+  - component: {fileID: 3246983813708356066}
   - component: {fileID: 2005618349882603327}
   - component: {fileID: 1608677357601109311}
-  - component: {fileID: 3246983813708356066}
   - component: {fileID: 4467954268304637304}
-  - component: {fileID: 7502778883024959165}
   - component: {fileID: 3150295483603212081}
-  - component: {fileID: 1296908618571297790}
   - component: {fileID: 544582615383139999}
   m_Layer: 6
   m_Name: Player
@@ -4955,67 +4955,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2005618349882603327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512025360035211242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d111a931b7b1a9e4688b65eeaa7268ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turnSpeed: 360
-  moveSpeed: 3.5
---- !u!114 &1608677357601109311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512025360035211242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32213309ca8ed274d956bd15edaf7c69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapons:
-  - {fileID: 321765257242219588}
---- !u!114 &3246983813708356066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512025360035211242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 694869e75f925f843b7c984ba6061f61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHP: 100
-  hpBar: {fileID: 0}
-  DeathScreen: {fileID: 0}
-  HUD: {fileID: 0}
---- !u!114 &4467954268304637304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512025360035211242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5395c5bcf164cf34ea861a48dee86ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxLevel: 100
-  levelScale: 2.2
-  initialLevelThresholdBoost: 3
-  upgradeScreen: {fileID: 0}
-  expBar: {fileID: 0}
 --- !u!61 &7502778883024959165
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5061,20 +5000,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3150295483603212081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512025360035211242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d76aec85113d84c8a07a5a1b1174d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageMultiplier: 1.3
-  BPSAdditive: 0.3
 --- !u!82 &1296908618571297790
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5171,6 +5096,81 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3246983813708356066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512025360035211242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694869e75f925f843b7c984ba6061f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  hpBar: {fileID: 0}
+  DeathScreen: {fileID: 0}
+  HUD: {fileID: 0}
+--- !u!114 &2005618349882603327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512025360035211242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d111a931b7b1a9e4688b65eeaa7268ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSpeed: 360
+  moveSpeed: 3.5
+--- !u!114 &1608677357601109311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512025360035211242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32213309ca8ed274d956bd15edaf7c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - {fileID: 321765257242219588}
+--- !u!114 &4467954268304637304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512025360035211242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5395c5bcf164cf34ea861a48dee86ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLevel: 100
+  levelScale: 2.2
+  initialLevelThresholdBoost: 3
+  upgradeScreen: {fileID: 0}
+  expBar: {fileID: 0}
+--- !u!114 &3150295483603212081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512025360035211242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d76aec85113d84c8a07a5a1b1174d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1.3
+  BPSAdditive: 0.3
 --- !u!114 &544582615383139999
 MonoBehaviour:
   m_ObjectHideFlags: 0
