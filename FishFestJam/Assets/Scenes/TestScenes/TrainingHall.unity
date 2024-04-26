@@ -402,8 +402,24 @@ PrefabInstance:
       value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 3861328401967427018, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: swimSpeed.IsInt
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861328401967427018, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: swimSpeed.StatValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861328401967427018, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
       propertyPath: timeBetweenUpgrades
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861328401967427018, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: swimSpeed.AddendValue
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861328401967427018, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: swimSpeed.TimeBetweenUpgrades
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6557611350530336176, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
       propertyPath: m_Name

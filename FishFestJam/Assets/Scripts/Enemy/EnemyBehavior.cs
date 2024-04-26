@@ -6,8 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D),typeof(Rigidbody2D),typeof(Timer))]
 public abstract class EnemyBehavior : MonoBehaviour
 {
+    // [SerializeField]
+    // protected float swimSpeed = 0f;
     [SerializeField]
-    protected float swimSpeed = 0f;
+    protected EnemyStat swimSpeed;
     [SerializeField]
     protected float delayBetweenSwims = 0f;
     [SerializeField]
@@ -21,7 +23,6 @@ public abstract class EnemyBehavior : MonoBehaviour
     protected GameObject target;
     private float HealthPoints = 0f;
     private Timer swimTimer;
-    private Vector2 dir;
 
     BoxCollider2D boxCollider2D;
     Rigidbody2D rb;
@@ -31,7 +32,9 @@ public abstract class EnemyBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         HealthPoints = maxHp;
         swimTimer = GetComponent<Timer>();
-        swimTimer.SetTimer(delayBetweenSwims, () => {SwimTo(target);});
+        swimTimer.SetTimer(delayBetweenSwims, () => {SwimPattern(target);});
+
+        swimSpeed.Initialize(gameObject.AddComponent<Timer>());
     }
 
     protected virtual void Start() {
@@ -43,15 +46,11 @@ public abstract class EnemyBehavior : MonoBehaviour
         if (PauseGame.Instance.isGamePaused) { return; }
         Move();
         LookAt(target.transform.position);
+        UpgradeAllStats();
     }
     protected virtual void OnParticleCollision(GameObject other) {
         // Debug.Log($"I, {this.gameObject.name}, have collided with {other.name}");
         DecreaseHealth(other.GetComponent<BaseWeapon>().BaseDamage * other.GetComponent<BaseWeapon>().WeaponMultiplier);
-    }
-
-    protected void Move()
-    {
-        swimTimer.SetTimer(delayBetweenSwims, () => { SwimTo(target); });
     }
 
     public void DecreaseHealth(float dmg)
@@ -68,21 +67,22 @@ public abstract class EnemyBehavior : MonoBehaviour
         ExpSpawner.Instance.SpawnExp(expDrop, transform.position);
         gameObject.SetActive(false);
     }
-
-    protected void SwimTo(GameObject t)
+    protected void Move()
     {
-        Vector2 newVel = rb.velocity;
-        dir = (target.transform.position - transform.position).normalized;
-        if(rb.velocity.x * dir.x < 0) {newVel.x /= 2;}
-        if(rb.velocity.y * dir.y < 0) {newVel.y /= 2;}
-        rb.velocity = newVel;
-        rb.AddForce(dir * swimSpeed,ForceMode2D.Force);
+        swimTimer.SetTimer(delayBetweenSwims, () => { SwimPattern(target); });
     }
+    protected virtual void SwimPattern(GameObject t) { return; }
 
     protected void LookAt(Vector2 point){
+        Vector2 dir = (target.transform.position - transform.position).normalized;
         float angle = Vector2.SignedAngle(Vector2.down, dir);
         var targetRotation = Quaternion.Euler (new Vector3(0f,0f,angle));
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+    }
+
+    protected virtual void UpgradeAllStats(){
+        swimSpeed.statTimer.SetTimer(swimSpeed.TimeBetweenUpgrades, () => {swimSpeed.UpgradeStat();});
+        Debug.Log("SwimSpeed upgraded: " + swimSpeed.StatValue);
     }
 
     private void OnDrawGizmos() {

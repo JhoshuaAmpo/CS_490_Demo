@@ -1,34 +1,48 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 [Serializable]
-public class EnemyStat : MonoBehaviour
+public class EnemyStat
 {
-    public string StatName = "";
-    public float StatValue = 0;
+    public float StatValue = 0f;
+    public bool IsInt = false;
+    [Header("Upgrade values")]
 
     [Tooltip("In Seconds")][Min(1)]
     public int TimeBetweenUpgrades = 1;
     [Tooltip("Default: 0\nFormula: baseVal * MultiplierValue + AddendValue")]
-    
     public float AddendValue = 0f;
     [Tooltip("Default: 1\nFormula: baseVal * MultiplierValue + AddendValue")][Min(0f)]
     public float MultiplierValue = 1f;
     public enum ClampOptions{min, max, none}
     public ClampOptions IsClamp = ClampOptions.none;
     public float ClampVal = 0;
+    public Timer statTimer;
+    private List<String> upgradeChart = new();
 
-    private Timer upgradeTimer;
-
-    private void Awake() {
-        gameObject.name = StatName;
-        upgradeTimer = this.gameObject.AddComponent<Timer>();
+    public void UpgradeStat(){
+        StatValue = (IsInt) ? LinearUpgradeFormula((int)StatValue) : LinearUpgradeFormula(StatValue);
     }
 
-    private void Update() {
-        upgradeTimer.SetTimer(TimeBetweenUpgrades,() => {StatValue = LinearUpgradeFormula(StatValue);});
+    public void UpgradeStat(ref float val){
+        val = (IsInt) ? LinearUpgradeFormula((int)val) : LinearUpgradeFormula(val);
+    }
+
+    public void Initialize(Timer t){
+        SetUpUpgradeChart();
+        statTimer = t;
+    }
+    public void SetUpUpgradeChart() {
+        float tempVal = StatValue;
+        int time = 0;
+        upgradeChart.Add(new($"{time/60:00}:{time%60:00} => {tempVal}"));
+        for(;time <= 600; time += TimeBetweenUpgrades) {
+            UpgradeStat(ref tempVal);
+            upgradeChart.Add(new($"{time/60:00}:{time%60:00} => {tempVal}"));
+        }
     }
 
     private float LinearUpgradeFormula(float baseVal)
@@ -42,7 +56,6 @@ public class EnemyStat : MonoBehaviour
         {
             return MathF.Max(product, ClampVal);
         }
-        DebugLogEnemyStats();
         return product;
     }
 
@@ -58,10 +71,5 @@ public class EnemyStat : MonoBehaviour
             return Math.Max(product, (int)ClampVal);
         }
         return product;
-    }
-
-    private void DebugLogEnemyStats()
-    {
-        Debug.Log($"{gameObject.name} : {StatValue}");
     }
 }
