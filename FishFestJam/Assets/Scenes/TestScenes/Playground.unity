@@ -211,6 +211,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &14675341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6557611350530336176, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+  m_PrefabInstance: {fileID: 88473869}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &14675348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14675341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d98b7e257a665849a4d7b7bb45275dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimSpeed:
+    Value: 0
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    statTimer: {fileID: 0}
+  delayBetweenSwims:
+    Value: 0
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    statTimer: {fileID: 0}
+  attackDamage:
+    Value: 0
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    statTimer: {fileID: 0}
+  turnSpeed:
+    Value: 0
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    statTimer: {fileID: 0}
+  expDrop:
+    Value: 0
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    statTimer: {fileID: 0}
+  maxHp:
+    Value: 0
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    statTimer: {fileID: 0}
+  selfDmg: 10
 --- !u!1 &42217531
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3861328401967427018, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
       propertyPath: swimSpeed.Value
-      value: 10
+      value: 10.8
       objectReference: {fileID: 0}
     - target: {fileID: 3861328401967427018, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
       propertyPath: swimSpeed.IsClamp
@@ -445,10 +517,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3861328401967427018, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6557611350530336176, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 14675348}
   m_SourcePrefab: {fileID: 100100000, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
 --- !u!1 &95146666
 GameObject:
@@ -1834,7 +1910,7 @@ Camera:
   far clip plane: 1000
   field of view: 110
   orthographic: 0
-  orthographic size: 1.765625
+  orthographic size: 1.78125
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
