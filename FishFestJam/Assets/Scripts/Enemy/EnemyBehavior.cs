@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D),typeof(Rigidbody2D),typeof(Timer))]
 public abstract class EnemyBehavior : MonoBehaviour
 {
-    // [SerializeField]
-    // protected float swimSpeed = 0f;
-    [Header("Base Stats")]
+    [OdinSerialize]
+    protected Dictionary<string,EnemyStat> EnemyStatDict = new();
+
     [SerializeField]
     protected EnemyStat swimSpeed;
     [SerializeField]
@@ -32,10 +34,10 @@ public abstract class EnemyBehavior : MonoBehaviour
     {
         boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+
         HealthPoints = maxHp.Value;
         swimTimer = GetComponent<Timer>();
         swimTimer.SetTimer(delayBetweenSwims.Value, () => {SwimPattern(target);});
-
         swimSpeed        .Initialize("swimSpeed", gameObject.AddComponent<Timer>());
         delayBetweenSwims.Initialize("delayBetweenSwims", gameObject.AddComponent<Timer>());
         attackDamage     .Initialize("attackDamage", gameObject.AddComponent<Timer>());
