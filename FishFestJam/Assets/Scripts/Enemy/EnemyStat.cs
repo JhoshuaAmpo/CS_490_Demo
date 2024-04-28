@@ -8,19 +8,46 @@ using Sirenix.OdinInspector;
 [Serializable]
 public class EnemyStat
 {
+    [BoxGroup("Upgrade Info")]
+    [HorizontalGroup("Upgrade Info/Row1",marginRight: 20)]
     public float Value = 0f;
-    public bool IsInt = false;
-    [Header("Upgrade values")]
 
-    [Tooltip("In Seconds")][Min(1)]
+    [BoxGroup("Upgrade Info")]
+    [HorizontalGroup("Upgrade Info/Row1")]
+    public bool IsInt = false;
+
+    [MinValue(0)]
+    [BoxGroup("Upgrade Info")]
+    [HorizontalGroup("Upgrade Info/Row2")]
+    [Tooltip("In Seconds")]
+    [LabelWidth(150f)]
     public int TimeBetweenUpgrades = 1;
-    [Tooltip("Default: 0\nFormula: baseVal * MultiplierValue + AddendValue")]
-    public float AddendValue = 0f;
-    [Tooltip("Default: 1\nFormula: baseVal * MultiplierValue + AddendValue")][Min(0f)]
+
+    [MinValue(0f)]
+    [BoxGroup("Upgrade Formula")]
+    [HorizontalGroup("Upgrade Formula/Formula")]
+    [LabelWidth(100f)]
+    [LabelText("value = value * ")]
     public float MultiplierValue = 1f;
+
+    [BoxGroup("Upgrade Formula")]
+    [HorizontalGroup("Upgrade Formula/Formula")]
+    [LabelWidth(30f)]
+    [LabelText(" + ")]
+    public float AddendValue = 0f;
+    
     public enum ClampOptions{min, max, none}
+
+    [HorizontalGroup("clamp")]
+    [Tooltip("Max: Adds a max value\nMin: Adds a min value\nNone: no limits")]
     public ClampOptions IsClamp = ClampOptions.none;
+
+    [HorizontalGroup("clamp")]
+    [HideIf("IsClamp", ClampOptions.none)]
+    [LabelText("@IsClamp == ClampOptions.max ? \"Max:\" : \"Min:\"")]
     public float ClampVal = 0;
+
+    [HideInEditorMode]
     public Timer statTimer;
     private List<String> upgradeChart = new();
     private string name;

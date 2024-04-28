@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Sirenix.OdinInspector;
 using Unity.Mathematics;
 using UnityEngine;
 
