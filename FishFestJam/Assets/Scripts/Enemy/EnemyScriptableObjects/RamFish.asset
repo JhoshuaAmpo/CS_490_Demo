@@ -20,259 +20,132 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: EnemyStats
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[EnemyStat,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 6
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: swimSpeed
-    - Name: $v
-      Entry: 7
-      Data: 2|EnemyStat, Assembly-CSharp
-    - Name: Value
-      Entry: 4
-      Data: 0
-    - Name: IsInt
-      Entry: 5
-      Data: false
-    - Name: TimeBetweenUpgrades
-      Entry: 3
-      Data: 1
-    - Name: MultiplierValue
-      Entry: 4
-      Data: 1
-    - Name: AddendValue
-      Entry: 4
-      Data: 0
-    - Name: IsClamp
-      Entry: 3
-      Data: 2
-    - Name: ClampVal
-      Entry: 4
-      Data: 0
-    - Name: statTimer
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: turnSpeed
-    - Name: $v
-      Entry: 7
-      Data: 3|EnemyStat, Assembly-CSharp
-    - Name: Value
-      Entry: 4
-      Data: 0
-    - Name: IsInt
-      Entry: 5
-      Data: false
-    - Name: TimeBetweenUpgrades
-      Entry: 3
-      Data: 1
-    - Name: MultiplierValue
-      Entry: 4
-      Data: 1
-    - Name: AddendValue
-      Entry: 4
-      Data: 0
-    - Name: IsClamp
-      Entry: 3
-      Data: 2
-    - Name: ClampVal
-      Entry: 4
-      Data: 0
-    - Name: statTimer
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: delayBetweemSwims
-    - Name: $v
-      Entry: 7
-      Data: 4|EnemyStat, Assembly-CSharp
-    - Name: Value
-      Entry: 4
-      Data: 0
-    - Name: IsInt
-      Entry: 5
-      Data: false
-    - Name: TimeBetweenUpgrades
-      Entry: 3
-      Data: 1
-    - Name: MultiplierValue
-      Entry: 4
-      Data: 1
-    - Name: AddendValue
-      Entry: 4
-      Data: 0
-    - Name: IsClamp
-      Entry: 3
-      Data: 2
-    - Name: ClampVal
-      Entry: 4
-      Data: 0
-    - Name: statTimer
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: attackDamage
-    - Name: $v
-      Entry: 7
-      Data: 5|EnemyStat, Assembly-CSharp
-    - Name: Value
-      Entry: 4
-      Data: 0
-    - Name: IsInt
-      Entry: 5
-      Data: false
-    - Name: TimeBetweenUpgrades
-      Entry: 3
-      Data: 1
-    - Name: MultiplierValue
-      Entry: 4
-      Data: 1
-    - Name: AddendValue
-      Entry: 4
-      Data: 0
-    - Name: IsClamp
-      Entry: 3
-      Data: 2
-    - Name: ClampVal
-      Entry: 4
-      Data: 0
-    - Name: statTimer
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: maxHP
-    - Name: $v
-      Entry: 7
-      Data: 6|EnemyStat, Assembly-CSharp
-    - Name: Value
-      Entry: 4
-      Data: 0
-    - Name: IsInt
-      Entry: 5
-      Data: false
-    - Name: TimeBetweenUpgrades
-      Entry: 3
-      Data: 1
-    - Name: MultiplierValue
-      Entry: 4
-      Data: 1
-    - Name: AddendValue
-      Entry: 4
-      Data: 0
-    - Name: IsClamp
-      Entry: 3
-      Data: 2
-    - Name: ClampVal
-      Entry: 4
-      Data: 0
-    - Name: statTimer
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: expDrop
-    - Name: $v
-      Entry: 7
-      Data: 7|EnemyStat, Assembly-CSharp
-    - Name: Value
-      Entry: 4
-      Data: 0
-    - Name: IsInt
-      Entry: 5
-      Data: false
-    - Name: TimeBetweenUpgrades
-      Entry: 3
-      Data: 1
-    - Name: MultiplierValue
-      Entry: 4
-      Data: 1
-    - Name: AddendValue
-      Entry: 4
-      Data: 0
-    - Name: IsClamp
-      Entry: 3
-      Data: 2
-    - Name: ClampVal
-      Entry: 4
-      Data: 0
-    - Name: statTimer
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   sprite: {fileID: 21300000, guid: 805766f981046214d91be9ef8d77d09a, type: 3}
+  SwimSpeed:
+    Value: 0
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart: []
+    statTimer: {fileID: 0}
+  DelayBetweenSwims:
+    Value: 40
+    IsInt: 0
+    TimeBetweenUpgrades: 15
+    MultiplierValue: 1
+    AddendValue: 5
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 600
+    upgradeChart:
+    - 00:00 => 40
+    - 00:10 => 45
+    - 00:20 => 50
+    - 00:30 => 55
+    - 00:40 => 60
+    - 00:50 => 65
+    - 01:00 => 70
+    - 01:10 => 75
+    - 01:20 => 80
+    - 01:30 => 85
+    - 01:40 => 90
+    - 01:50 => 95
+    - 02:00 => 100
+    - 02:10 => 105
+    - 02:20 => 110
+    - 02:30 => 115
+    - 02:40 => 120
+    - 02:50 => 125
+    - 03:00 => 130
+    - 03:10 => 135
+    - 03:20 => 140
+    - 03:30 => 145
+    - 03:40 => 150
+    - 03:50 => 155
+    - 04:00 => 160
+    - 04:10 => 165
+    - 04:20 => 170
+    - 04:30 => 175
+    - 04:40 => 180
+    - 04:50 => 185
+    - 05:00 => 190
+    - 05:10 => 195
+    - 05:20 => 200
+    - 05:30 => 205
+    - 05:40 => 210
+    - 05:50 => 215
+    - 06:00 => 220
+    - 06:10 => 225
+    - 06:20 => 230
+    - 06:30 => 235
+    - 06:40 => 240
+    - 06:50 => 245
+    - 07:00 => 250
+    - 07:10 => 255
+    - 07:20 => 260
+    - 07:30 => 265
+    - 07:40 => 270
+    - 07:50 => 275
+    - 08:00 => 280
+    - 08:10 => 285
+    - 08:20 => 290
+    - 08:30 => 295
+    - 08:40 => 300
+    - 08:50 => 305
+    - 09:00 => 310
+    - 09:10 => 315
+    - 09:20 => 320
+    - 09:30 => 325
+    - 09:40 => 330
+    - 09:50 => 335
+    - 10:00 => 340
+    statTimer: {fileID: 0}
+  AttackDamage:
+    Value: 0
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart: []
+    statTimer: {fileID: 0}
+  TurnSpeed:
+    Value: 0
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart: []
+    statTimer: {fileID: 0}
+  ExpDrop:
+    Value: 0
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart: []
+    statTimer: {fileID: 0}
+  MaxHp:
+    Value: 5
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart: []
+    statTimer: {fileID: 0}

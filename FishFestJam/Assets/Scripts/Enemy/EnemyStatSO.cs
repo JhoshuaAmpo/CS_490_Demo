@@ -7,6 +7,11 @@ using UnityEngine;
 public class EnemyStatSO : SerializedScriptableObject
 {
     public Sprite sprite;
-    [DictionaryDrawerSettings(KeyLabel = "Stat Name: ", ValueLabel = "Stat Info", DisplayMode = DictionaryDisplayOptions.CollapsedFoldout)]
-    public Dictionary<string,EnemyStat> EnemyStats;
+    [Header("Base Stats")]
+    public EnemyStat SwimSpeed;
+    public EnemyStat DelayBetweenSwims;
+    public EnemyStat AttackDamage;
+    public EnemyStat TurnSpeed;
+    public EnemyStat ExpDrop;
+    public EnemyStat MaxHp;
 }

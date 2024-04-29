@@ -10,19 +10,11 @@ using UnityEngine;
 public abstract class EnemyBehavior : MonoBehaviour
 {
     public EnemyStatSO enemyStatSO;
-    private List<EnemyStat> EnemyStatsList= new();
-
-    [SerializeField]
     protected EnemyStat swimSpeed;
-    [SerializeField]
     protected EnemyStat delayBetweenSwims;
-    [SerializeField]
     protected EnemyStat attackDamage;
-    [SerializeField]
     protected EnemyStat turnSpeed;
-    [SerializeField]
     protected EnemyStat expDrop;
-    [SerializeField]
     protected EnemyStat maxHp;
     protected GameObject target;
     private float HealthPoints;
@@ -36,14 +28,18 @@ public abstract class EnemyBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         HealthPoints = maxHp.Value;
+
+        swimSpeed = enemyStatSO.SwimSpeed;
+        delayBetweenSwims = enemyStatSO.DelayBetweenSwims;
+        attackDamage = enemyStatSO.AttackDamage;
+        turnSpeed = enemyStatSO.TurnSpeed;
+        maxHp = enemyStatSO.MaxHp;
+        expDrop = enemyStatSO.ExpDrop;
+
+        InitializeAllStats();
+
         swimTimer = GetComponent<Timer>();
-        swimTimer.SetTimer(delayBetweenSwims.Value, () => {SwimPattern(target);});
-        swimSpeed        .Initialize("swimSpeed", gameObject.AddComponent<Timer>());
-        delayBetweenSwims.Initialize("delayBetweenSwims", gameObject.AddComponent<Timer>());
-        attackDamage     .Initialize("attackDamage", gameObject.AddComponent<Timer>());
-        turnSpeed        .Initialize("turnSpeed", gameObject.AddComponent<Timer>());
-        maxHp            .Initialize("maxHP", gameObject.AddComponent<Timer>());
-        expDrop          .Initialize("expDrop", gameObject.AddComponent<Timer>());
+        swimTimer.SetTimer(delayBetweenSwims.Value, () => { SwimPattern(target); });
     }
 
     protected virtual void Start() {
@@ -71,11 +67,6 @@ public abstract class EnemyBehavior : MonoBehaviour
         }
     }
 
-    private void Death()
-    {
-        ExpSpawner.Instance.SpawnExp((int)expDrop.Value, transform.position);
-        gameObject.SetActive(false);
-    }
     protected void Move()
     {
         swimTimer.SetTimer(delayBetweenSwims.Value, () => { SwimPattern(target); });
@@ -89,13 +80,39 @@ public abstract class EnemyBehavior : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed.Value * Time.deltaTime);
     }
 
+    protected virtual void InitializeAllStats()
+    {
+        InitializeStat(swimSpeed, "swimSpeed");
+        InitializeStat(delayBetweenSwims, "delayBetweenSwims");
+        InitializeStat(attackDamage, "attackDamage");
+        InitializeStat(turnSpeed, "turnSpeed");
+        InitializeStat(maxHp, "maxHP");
+        InitializeStat(expDrop, "expDrop");
+    }
+
+    protected void InitializeStat(EnemyStat es, string name)
+    {
+        es.Initialize(name, gameObject.AddComponent<Timer>());
+    }
+
     protected virtual void UpgradeAllStats(){
-        swimSpeed        .statTimer.SetTimer(swimSpeed.TimeBetweenUpgrades, () => {swimSpeed.UpgradeStat();});      
-        delayBetweenSwims.statTimer.SetTimer(delayBetweenSwims.TimeBetweenUpgrades, () => {delayBetweenSwims.UpgradeStat();});  
-        attackDamage     .statTimer.SetTimer(attackDamage.TimeBetweenUpgrades, () => {attackDamage.UpgradeStat();});  
-        turnSpeed        .statTimer.SetTimer(turnSpeed.TimeBetweenUpgrades, () => {turnSpeed.UpgradeStat();});  
-        maxHp            .statTimer.SetTimer(maxHp.TimeBetweenUpgrades, () => {maxHp.UpgradeStat();});
-        expDrop          .statTimer.SetTimer(expDrop.TimeBetweenUpgrades, () => {expDrop.UpgradeStat();});
+        UpgradeStat(swimSpeed        );
+        UpgradeStat(delayBetweenSwims);
+        UpgradeStat(attackDamage     );
+        UpgradeStat(turnSpeed        );
+        UpgradeStat(maxHp            );
+        UpgradeStat(expDrop          );
+    }
+
+    protected void UpgradeStat(EnemyStat es)
+    {
+        es.statTimer.SetTimer(es.TimeBetweenUpgrades, () => {es.UpgradeStat();});
+    }
+
+    private void Death()
+    {
+        ExpSpawner.Instance.SpawnExp((int)expDrop.Value, transform.position);
+        gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos() {
