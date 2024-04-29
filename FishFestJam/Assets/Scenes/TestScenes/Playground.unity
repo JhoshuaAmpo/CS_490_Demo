@@ -398,8 +398,109 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: enemyStatSO
+      value: 
+      objectReference: {fileID: 11400000, guid: be758e166adab424f86491d71c5ee1fa, type: 2}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
       propertyPath: swimSpeed.StatName
       value: SwimSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: EnemyStatDict.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: EnemyStatDict.Array.data[0].IsClamp
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: EnemyStatDict.Array.data[1].IsClamp
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: EnemyStatDict.Array.data[0].StatName
+      value: fis
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: EnemyStatDict.Array.data[1].StatName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: EnemyStatDict.Array.data[0].MultiplierValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: EnemyStatDict.Array.data[1].MultiplierValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: EnemyStatDict.Array.data[0].TimeBetweenUpgrades
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: EnemyStatDict.Array.data[1].TimeBetweenUpgrades
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"EnemyStatDict","add_keys":{"$id":0,"$type":"System.Object[],
+        mscorlib","$rlength":1,"$rcontent":[{"$id":1,"$type":"System.String, mscorlib","SwimSpeed"}]},"remove_keys":null'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"EnemyStatDict.{\"SwimSpeed\"}","value":{"$id":0,"$type":"EnemyStat,
+        Assembly-CSharp","Value":0,"IsInt":false,"TimeBetweenUpgrades":1,"MultiplierValue":1,"AddendValue":0,"IsClamp":2,"ClampVal":0,"statTimer":null}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[2]
+      value: '"path":"EnemyStatDict.{\"SwimSpeed\"}.AddendValue","value":{"$id":0,"$type":"System.Single,
+        mscorlib",0}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[3]
+      value: '"path":"EnemyStatDict.{\"SwimSpeed\"}.ClampVal","value":{"$id":0,"$type":"System.Single,
+        mscorlib",0}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[4]
+      value: '"path":"EnemyStatDict.{\"SwimSpeed\"}.IsClamp","value":{"$id":0,"$type":"EnemyStat+ClampOptions,
+        Assembly-CSharp",2}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[5]
+      value: '"path":"EnemyStatDict.{\"SwimSpeed\"}.IsInt","value":{"$id":0,"$type":"System.Boolean,
+        mscorlib",false}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[6]
+      value: '"path":"EnemyStatDict.{\"SwimSpeed\"}.MultiplierValue","value":{"$id":0,"$type":"System.Single,
+        mscorlib",1}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[7]
+      value: '"path":"EnemyStatDict.{\"SwimSpeed\"}.statTimer","value":null'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[8]
+      value: '"path":"EnemyStatDict.{\"SwimSpeed\"}.TimeBetweenUpgrades","value":{"$id":0,"$type":"System.Int32,
+        mscorlib",1}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[9]
+      value: '"path":"EnemyStatDict.{\"SwimSpeed\"}.Value","value":{"$id":0,"$type":"System.Single,
+        mscorlib",0}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215788659566391874, guid: 0d8cf722d0ded564c82eeccde651eaf3, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1790,7 +1891,7 @@ Camera:
   far clip plane: 1000
   field of view: 110
   orthographic: 0
-  orthographic size: 1.78125
+  orthographic size: 2.6171875
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -4789,6 +4890,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7455282815506259948, guid: fca649939f7add4418f582d73fa121cb, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7455282815506259948, guid: fca649939f7add4418f582d73fa121cb, type: 3}
     - target: {fileID: 7679888813817478593, guid: fca649939f7add4418f582d73fa121cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.12

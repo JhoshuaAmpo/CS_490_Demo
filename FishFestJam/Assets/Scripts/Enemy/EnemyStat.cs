@@ -8,44 +8,41 @@ using Sirenix.OdinInspector;
 [Serializable]
 public class EnemyStat
 {
-    public string StatName = "";
-    [BoxGroup("@StatName")]
-    
-    [BoxGroup("@StatName/Upgrade Info",VisibleIf = "@StatName != \"\"")]
-    [HorizontalGroup("@StatName/Upgrade Info/Row1",marginRight: 20)]
+    [BoxGroup("Upgrade Info")]
+    [HorizontalGroup("Upgrade Info/Row1",marginRight: 20)]
     public float Value = 0f;
 
-    [BoxGroup("@StatName/Upgrade Info")]
-    [HorizontalGroup("@StatName/Upgrade Info/Row1")]
+    [BoxGroup("Upgrade Info")]
+    [HorizontalGroup("Upgrade Info/Row1")]
     public bool IsInt = false;
 
     [MinValue(0)]
-    [BoxGroup("@StatName/Upgrade Info")]
-    [HorizontalGroup("@StatName/Upgrade Info/Row2")]
+    [BoxGroup("Upgrade Info")]
+    [HorizontalGroup("Upgrade Info/Row2")]
     [Tooltip("In Seconds")]
     [LabelWidth(150f)]
     public int TimeBetweenUpgrades = 1;
 
     [MinValue(0f)]
-    [BoxGroup("@StatName/Upgrade Formula",VisibleIf = "@StatName != \"\"")]
-    [HorizontalGroup("@StatName/Upgrade Formula/Formula")]
+    [BoxGroup("Upgrade Formula")]
+    [HorizontalGroup("Upgrade Formula/Formula")]
     [LabelWidth(100f)]
     [LabelText("value = value * ")]
     public float MultiplierValue = 1f;
 
-    [BoxGroup("@StatName/Upgrade Formula")]
-    [HorizontalGroup("@StatName/Upgrade Formula/Formula")]
+    [BoxGroup("Upgrade Formula")]
+    [HorizontalGroup("Upgrade Formula/Formula")]
     [LabelWidth(30f)]
     [LabelText(" + ")]
     public float AddendValue = 0f;
     
     public enum ClampOptions{min, max, none}
 
-    [HorizontalGroup("@StatName/clamp",VisibleIf = "@StatName != \"\"")]
+    [HorizontalGroup("clamp")]
     [Tooltip("Max: Adds a max value\nMin: Adds a min value\nNone: no limits")]
     public ClampOptions IsClamp = ClampOptions.none;
 
-    [HorizontalGroup("@StatName/clamp")]
+    [HorizontalGroup("clamp")]
     [HideIf("StatName", "")]
     [HideIf("IsClamp", ClampOptions.none)]
     [LabelText("@IsClamp == ClampOptions.max ? \"Max:\" : \"Min:\"")]

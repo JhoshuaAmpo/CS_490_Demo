@@ -9,8 +9,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D),typeof(Rigidbody2D),typeof(Timer))]
 public abstract class EnemyBehavior : MonoBehaviour
 {
-    [OdinSerialize]
-    protected Dictionary<string,EnemyStat> EnemyStatDict = new();
+    public EnemyStatSO enemyStatSO;
+    private List<EnemyStat> EnemyStatsList= new();
 
     [SerializeField]
     protected EnemyStat swimSpeed;
