@@ -1296,10 +1296,10 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 2040388038}
-  m_Follow: {fileID: 2040388038}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 140
-    OrthographicSize: 30
+    OrthographicSize: 11
     NearClipPlane: 0
     FarClipPlane: 1000
     Dutch: 0
@@ -1706,7 +1706,7 @@ Camera:
   far clip plane: 1000
   field of view: 140
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 11
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2964,6 +2964,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aea9f8324f5a0643b85135ee91e06f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orthoSizeRange: {x: 10, y: 30}
+  orthoSizeDuration: 60
+  SizeScale: 1
 --- !u!1 &1438256566 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2512025360035211242, guid: ee5b55995d70d494b88d22b3b11b72d5, type: 3}

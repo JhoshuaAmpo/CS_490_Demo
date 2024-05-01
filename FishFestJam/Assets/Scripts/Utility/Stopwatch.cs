@@ -45,6 +45,10 @@ public class Stopwatch : MonoBehaviour
         return timerText.text;
     }
 
+    public int GetCurrentTimeInSeconds(){
+        return 60 * mins + secs;
+    }
+
     void UpdateTimerText(){
         timerText.text = $"{mins}:{secs:00}";
         deathScreenTimerText.text = $"{mins}:{secs:00} minutes!!!";
