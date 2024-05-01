@@ -41,5 +41,4 @@ public class RamFishBehavior : EnemyBehavior
         base.UpgradeAllStats();
         UpgradeStat(selfDmg);
     }
-
 }

@@ -118,7 +118,8 @@ public abstract class EnemyBehavior : MonoBehaviour
     private void OnDrawGizmos() {
         if(rb != null)
         {
-            Vector3 dir = (target.transform.position - transform.position).normalized;
+            GameObject t = PlayerHandler.Instance.gameObject;
+            Vector3 dir = (t.transform.position - transform.position).normalized;
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(this.transform.position, this.transform.position + dir);
 
