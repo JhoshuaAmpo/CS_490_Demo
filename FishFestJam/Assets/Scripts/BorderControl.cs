@@ -99,8 +99,9 @@ public class BorderControl : MonoBehaviour
         }
         if (SizeScale == ScalingOptions.exponential)
         {
-            exponentialCurTime += Time.deltaTime;
-            orthoSize = Mathf.Pow(exponentialBaseValue, exponentialCurTime) / orthoSizeDuration + orthoSizeRange.x; 
+            Debug.LogError("Exponential Size Scale doesn't work");
+            // exponentialCurTime += Time.deltaTime;
+            // orthoSize = Mathf.Pow(exponentialBaseValue, exponentialCurTime) / orthoSizeDuration + orthoSizeRange.x; 
         }
         Debug.Log("Ortho Size: " + orthoSize);
         Mathf.Clamp(orthoSize, orthoSizeRange.x, orthoSizeRange.y);

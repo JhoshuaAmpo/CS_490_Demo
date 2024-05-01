@@ -2966,7 +2966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orthoSizeRange: {x: 10, y: 30}
   orthoSizeDuration: 20
-  SizeScale: 2
+  SizeScale: 0
   exponentialBaseValue: 1.7
 --- !u!1 &1438256566 stripped
 GameObject:
