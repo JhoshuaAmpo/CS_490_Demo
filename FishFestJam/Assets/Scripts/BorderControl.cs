@@ -21,7 +21,11 @@ public class BorderControl : MonoBehaviour
     [EnumToggleButtons]
     public ScalingOptions SizeScale;
 
-    public enum ScalingOptions { linear, exponential }
+    public enum ScalingOptions { linear, smoothDamp, exponential }
+
+    [MinValue(1f)]
+    [TitleGroup("Exponential Scale Settings",VisibleIf = "@SizeScale == ScalingOptions.exponential")]
+    public float exponentialBaseValue;
 
     float width = 0;
     float height = 0;
@@ -29,7 +33,9 @@ public class BorderControl : MonoBehaviour
     CinemachineVirtualCamera virtualCamera;
     float orthoSize;
     float linearSizeDelta;
+    float smoothDampSizeDelta;
     float exponentialSizeDelta;
+    float exponentialCurTime = 0;
     float smoothDampVel = 1;
     private void Awake() {
         if (Instance != null && Instance != this) 
@@ -86,11 +92,17 @@ public class BorderControl : MonoBehaviour
             linearSizeDelta = Time.deltaTime * (orthoSizeRange.y - orthoSizeRange.x) / orthoSizeDuration;
             orthoSize += linearSizeDelta;
         }
-        if(SizeScale == ScalingOptions.exponential)
+        if(SizeScale == ScalingOptions.smoothDamp)
         {
-            exponentialSizeDelta = Time.deltaTime * Mathf.SmoothDamp(orthoSize, orthoSizeRange.y, ref smoothDampVel, 1) / orthoSizeDuration;
-            orthoSize += exponentialSizeDelta;
+            smoothDampSizeDelta = Time.deltaTime * Mathf.SmoothDamp(orthoSize, orthoSizeRange.y, ref smoothDampVel, 1) / orthoSizeDuration;
+            orthoSize += smoothDampSizeDelta;
         }
+        if (SizeScale == ScalingOptions.exponential)
+        {
+            exponentialCurTime += Time.deltaTime;
+            orthoSize = Mathf.Pow(exponentialBaseValue, exponentialCurTime) / orthoSizeDuration + orthoSizeRange.x; 
+        }
+        Debug.Log("Ortho Size: " + orthoSize);
         Mathf.Clamp(orthoSize, orthoSizeRange.x, orthoSizeRange.y);
         virtualCamera.m_Lens.OrthographicSize = orthoSize;
     }

@@ -2965,8 +2965,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orthoSizeRange: {x: 10, y: 30}
-  orthoSizeDuration: 60
-  SizeScale: 1
+  orthoSizeDuration: 20
+  SizeScale: 2
+  exponentialBaseValue: 1.7
 --- !u!1 &1438256566 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2512025360035211242, guid: ee5b55995d70d494b88d22b3b11b72d5, type: 3}
