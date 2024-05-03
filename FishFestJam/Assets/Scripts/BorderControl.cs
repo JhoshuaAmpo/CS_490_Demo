@@ -35,13 +35,13 @@ public class BorderControl : MonoBehaviour
     public float width = 0;
     [ReadOnly]
     public float height = 0;
-    
+
     BoxCollider2D bc;
     CinemachineVirtualCamera virtualCamera;
     float linearSizeDelta;
     float smoothDampSizeDelta;
     float exponentialSizeDelta;
-    float exponentialCurTime = 0;
+    float exponentialCurTime;
     float smoothDampVel = 1;
     Vector3 ls;
     private void Awake() {
