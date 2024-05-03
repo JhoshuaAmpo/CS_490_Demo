@@ -12,7 +12,7 @@ public class BorderControl : MonoBehaviour
     [ReadOnly]
     public float orthoSize;
 
-    [MinMaxSlider(0,100, true)]
+    [MinMaxSlider(0.0001f,100, true)]
     [LabelText("Orthographic Size Range")]
     public Vector2 orthoSizeRange = new();
 

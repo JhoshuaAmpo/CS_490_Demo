@@ -2881,7 +2881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orthoSize: 0
   orthoSizeRange: {x: 10, y: 30}
-  orthoSizeDuration: 60
+  orthoSizeDuration: 600
   SizeScale: 0
   exponentialBaseValue: 1.7
   width: 0
