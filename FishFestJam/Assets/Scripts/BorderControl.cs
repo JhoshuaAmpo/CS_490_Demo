@@ -97,20 +97,19 @@ public class BorderControl : MonoBehaviour
     private void UpdateVirtualCameraOrthoSize(){
         if (orthoSize >= orthoSizeRange.y) { return; }
         if (orthoSizeDuration == 0) {
-            virtualCamera.m_Lens.OrthographicSize = orthoSizeRange.y;
-            return;
+            orthoSize = orthoSizeRange.y;
         }
-        if(SizeScale == ScalingOptions.linear)
+        else if(SizeScale == ScalingOptions.linear)
         {
             linearSizeDelta = Time.deltaTime * (orthoSizeRange.y - orthoSizeRange.x) / orthoSizeDuration;
             orthoSize += linearSizeDelta;
         }
-        if(SizeScale == ScalingOptions.smoothDamp)
+        else if(SizeScale == ScalingOptions.smoothDamp)
         {
             smoothDampSizeDelta = Time.deltaTime * Mathf.SmoothDamp(orthoSize, orthoSizeRange.y, ref smoothDampVel, 1) / orthoSizeDuration;
             orthoSize += smoothDampSizeDelta;
         }
-        if (SizeScale == ScalingOptions.exponential)
+        else if (SizeScale == ScalingOptions.exponential)
         {
             Debug.LogError("Exponential Size Scale doesn't work");
             // exponentialCurTime += Time.deltaTime;
