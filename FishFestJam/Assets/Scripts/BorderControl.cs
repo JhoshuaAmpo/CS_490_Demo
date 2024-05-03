@@ -8,8 +8,11 @@ public class BorderControl : MonoBehaviour
 {
     public static BorderControl Instance { get; private set;}
 
-    [MinMaxSlider(0,100, true)]
     [TitleGroup("Virtual Camera Settings")]
+    [ReadOnly]
+    public float orthoSize;
+
+    [MinMaxSlider(0,100, true)]
     [LabelText("Orthographic Size Range")]
     public Vector2 orthoSizeRange = new();
 
@@ -27,16 +30,20 @@ public class BorderControl : MonoBehaviour
     [TitleGroup("Exponential Scale Settings",VisibleIf = "@SizeScale == ScalingOptions.exponential")]
     public float exponentialBaseValue;
 
-    float width = 0;
-    float height = 0;
+    [TitleGroup("Debug Info")]
+    [ReadOnly]
+    public float width = 0;
+    [ReadOnly]
+    public float height = 0;
+    
     BoxCollider2D bc;
     CinemachineVirtualCamera virtualCamera;
-    float orthoSize;
     float linearSizeDelta;
     float smoothDampSizeDelta;
     float exponentialSizeDelta;
     float exponentialCurTime = 0;
     float smoothDampVel = 1;
+    Vector3 ls;
     private void Awake() {
         if (Instance != null && Instance != this) 
         { 
@@ -45,16 +52,21 @@ public class BorderControl : MonoBehaviour
         }
         Instance = this;
         bc = GetComponent<BoxCollider2D>();
-        width = bc.size.x;
-        height = bc.size.y;
+        ls = transform.localScale;
+
+        width = bc.size.x * ls.x;
+        height = bc.size.y * ls.y;
 
         orthoSize = orthoSizeRange.x;
         virtualCamera = FindAnyObjectByType<CinemachineVirtualCamera>();
         virtualCamera.m_Lens.OrthographicSize = orthoSize;
+
+        SetBoxSizeToOrthoSize();
     }
 
     private void Update() {
         UpdateVirtualCameraOrthoSize();
+        MatchLocalScaleToOrthoSize();
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -74,6 +86,7 @@ public class BorderControl : MonoBehaviour
     {
         if (!other.CompareTag("Player")) { return; }
         Vector3 playerPos = other.transform.position;
+        Vector3 ls = transform.localScale;
         if (playerPos.x < -width / 2) { playerPos.x += width; }
         if (playerPos.x > width / 2) { playerPos.x -= width; }
         if (playerPos.y < -height / 2) { playerPos.y += height; }
@@ -84,7 +97,7 @@ public class BorderControl : MonoBehaviour
     private void UpdateVirtualCameraOrthoSize(){
         if (orthoSize >= orthoSizeRange.y) { return; }
         if (orthoSizeDuration == 0) {
-            virtualCamera.m_Lens.OrthographicSize = 0;
+            virtualCamera.m_Lens.OrthographicSize = orthoSizeRange.y;
             return;
         }
         if(SizeScale == ScalingOptions.linear)
@@ -103,8 +116,22 @@ public class BorderControl : MonoBehaviour
             // exponentialCurTime += Time.deltaTime;
             // orthoSize = Mathf.Pow(exponentialBaseValue, exponentialCurTime) / orthoSizeDuration + orthoSizeRange.x; 
         }
-        Debug.Log("Ortho Size: " + orthoSize);
         Mathf.Clamp(orthoSize, orthoSizeRange.x, orthoSizeRange.y);
         virtualCamera.m_Lens.OrthographicSize = orthoSize;
+    }
+
+    private void SetBoxSizeToOrthoSize()
+    {
+        bc.size = new Vector2(Camera.main.aspect * 2 * orthoSize , 2 * orthoSize);
+    }
+
+    private void MatchLocalScaleToOrthoSize(){
+        float OSRRatio = orthoSizeRange.y / orthoSizeRange.x;
+        float scale = orthoSize / orthoSizeRange.y * OSRRatio;
+        Mathf.Clamp(scale, 1, OSRRatio);
+        ls = new (scale, scale, 1);
+        transform.localScale = ls;
+        width = bc.size.x * ls.x;
+        height = bc.size.y * ls.y;
     }
 }
