@@ -27,14 +27,14 @@ public abstract class EnemyBehavior : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
 
-        HealthPoints = maxHp.Value;
-
         swimSpeed = enemyStatSO.SwimSpeed;
         delayBetweenSwims = enemyStatSO.DelayBetweenSwims;
         attackDamage = enemyStatSO.AttackDamage;
         turnSpeed = enemyStatSO.TurnSpeed;
         maxHp = enemyStatSO.MaxHp;
         expDrop = enemyStatSO.ExpDrop;
+
+        HealthPoints = maxHp.Value;
 
         InitializeAllStats();
 

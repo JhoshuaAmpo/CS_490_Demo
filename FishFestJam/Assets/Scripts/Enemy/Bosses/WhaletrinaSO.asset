@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed167efd2ae69f4a9956a71ab9de79b, type: 3}
+  m_Name: WhaletrinaSO
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  sprite: {fileID: 0}
+  SwimSpeed:
+    Value: 1
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart:
+    - 00:00 => 1
+    statTimer: {fileID: 0}
+  DelayBetweenSwims:
+    Value: 1
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart:
+    - 00:00 => 1
+    statTimer: {fileID: 0}
+  AttackDamage:
+    Value: 1
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart:
+    - 00:00 => 1
+    statTimer: {fileID: 0}
+  TurnSpeed:
+    Value: 1
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart:
+    - 00:00 => 1
+    statTimer: {fileID: 0}
+  ExpDrop:
+    Value: 1
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart:
+    - 00:00 => 1
+    statTimer: {fileID: 0}
+  MaxHp:
+    Value: 10000
+    IsInt: 0
+    TimeBetweenUpgrades: 1
+    MultiplierValue: 1
+    AddendValue: 0
+    IsClamp: 2
+    ClampVal: 0
+    MaxTime: 0
+    upgradeChart:
+    - 00:00 => 1
+    statTimer: {fileID: 0}
