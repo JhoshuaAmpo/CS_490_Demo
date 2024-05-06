@@ -8,14 +8,48 @@ using UnityEngine.PlayerLoop;
 public class BubbleGun : BaseWeapon
 {
     ParticleSystem ps;
+    [Min(0)]
+    public float BubbleDuration;
     private void Awake() {
         ps = GetComponent<ParticleSystem>();
+    }
+
+    private void Start() {
         var psMain = ps.main;
         psMain.simulationSpeed = AttackSpeed;
         psMain.startSize = AttackSize;
-
-        InitiliazationTest();
+        psMain.startLifetime = BubbleDuration;
     }
+
+    /// <summary>
+    /// <list type="element|stat name">
+    ///     <item>
+    ///         <term>[0]</term>
+    ///         <description>AttackSpeed</description>
+    ///     </item>
+    ///     <item>
+    ///         <term>[1]</term>
+    ///         <description>BaseDamage</description>
+    ///     </item>
+    ///     <item>
+    ///         <term>[2]</term>
+    ///         <description>WeaponMultiplier</description>
+    ///     </item>
+    ///     <item>
+    ///         <term>[3]</term>
+    ///         <description>AttackSize</description>
+    ///     </item>
+    ///     <item>
+    ///         <term>[4]</term>
+    ///         <description>BubbleDuration</description>
+    ///     </item>
+    /// </list>
+    /// </summary>
+    public override void InitiliazeStats(params float[] stats) {
+      base.InitiliazeStats(stats);
+      BubbleDuration = stats[4];
+    }
+
     public override void Attack()
     {
         if(!ps.emission.enabled) {
@@ -47,4 +81,6 @@ public class BubbleGun : BaseWeapon
             ps.Stop();   
         }
     }
+
+    
 }

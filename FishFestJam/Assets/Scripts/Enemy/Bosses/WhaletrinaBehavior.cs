@@ -7,8 +7,16 @@ using UnityEngine;
 public class WhaletrinaBehavior : EnemyBehavior
 {
     [TitleGroup("Attack Commands")]
-    
-    public void FishFoodSpray(){
-        
+    public int temp;
+
+    private EnemyWeaponsManager weapons;
+    protected override void Awake()
+    {
+        base.Awake();
+        weapons = GetComponentInChildren<EnemyWeaponsManager>();
+    }
+    protected override void Update()
+    {
+        base.Update();
     }
 }

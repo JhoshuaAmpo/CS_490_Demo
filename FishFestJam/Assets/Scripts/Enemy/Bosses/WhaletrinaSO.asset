@@ -59,9 +59,9 @@ MonoBehaviour:
     - 00:00 => 1
     statTimer: {fileID: 0}
   TurnSpeed:
-    Value: 1
+    Value: 100
     IsInt: 0
-    TimeBetweenUpgrades: 1
+    TimeBetweenUpgrades: 1000
     MultiplierValue: 1
     AddendValue: 0
     IsClamp: 2
@@ -92,5 +92,5 @@ MonoBehaviour:
     ClampVal: 0
     MaxTime: 0
     upgradeChart:
-    - 00:00 => 1
+    - 00:00 => 10000
     statTimer: {fileID: 0}
