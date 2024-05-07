@@ -10,6 +10,8 @@ public class BubbleGun : BaseWeapon
     ParticleSystem ps;
     [Min(0)]
     public float BubbleDuration;
+    [Min(0)]
+    public float BubbleSpeed;
     private void Awake() {
         ps = GetComponent<ParticleSystem>();
     }
@@ -19,6 +21,7 @@ public class BubbleGun : BaseWeapon
         psMain.simulationSpeed = AttackSpeed;
         psMain.startSize = AttackSize;
         psMain.startLifetime = BubbleDuration;
+        psMain.startSpeed = BubbleSpeed;
     }
 
     /// <summary>
@@ -43,11 +46,16 @@ public class BubbleGun : BaseWeapon
     ///         <term>[4]</term>
     ///         <description>BubbleDuration</description>
     ///     </item>
+    ///     <item>
+    ///         <term>[5]</term>
+    ///         <description>BubbleSpeed</description>
+    ///     </item>
     /// </list>
     /// </summary>
     public override void InitiliazeStats(params float[] stats) {
       base.InitiliazeStats(stats);
       BubbleDuration = stats[4];
+      BubbleSpeed = stats[5];
     }
 
     public override void Attack()

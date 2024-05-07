@@ -74,7 +74,8 @@ MonoBehaviour:
     IsClamp: 2
     ClampVal: 0
     MaxTime: 0
-    upgradeChart: []
+    upgradeChart:
+    - 00:00 => 0
     statTimer: {fileID: 0}
   TurnSpeed:
     Value: 0

@@ -7,16 +7,12 @@ using UnityEngine;
 public class FishSpray : MonoBehaviour, IEnemyWeapon
 {
     [TitleGroup("BubbleGun Settings")]
-         
-    public float AttackSpeed;
-
+    public float RateOfFire;
     public float BaseDamage;
-
     public float WeaponMultiplier;
-
     public float AttackSize;   
-
     public float BubbleDuration;
+    public float BubbleSpeed;
 
     [TitleGroup("Phase Settings")]
     [EnumToggleButtons]
@@ -41,12 +37,13 @@ public class FishSpray : MonoBehaviour, IEnemyWeapon
     }
 
     private void InitializeAllBubbleGuns() {
-        float[] statsArr = new float[5];
-        statsArr[0] = AttackSpeed;
+        float[] statsArr = new float[6];
+        statsArr[0] = RateOfFire;
         statsArr[1] = BaseDamage;
         statsArr[2] = WeaponMultiplier;
         statsArr[3] = AttackSize;
         statsArr[4] = BubbleDuration;
+        statsArr[5] = BubbleSpeed;
         List<BubbleGun> allBubbleGuns = new();
         GetComponentsInChildren<BubbleGun>(allBubbleGuns);
         foreach(BubbleGun bbg in allBubbleGuns) {
