@@ -50,6 +50,8 @@ MonoBehaviour:
   BaseDamage: 10
   WeaponMultiplier: 1
   AttackSize: 1
+  BubbleDuration: 10
+  BubbleSpeed: 10
 --- !u!198 &5801976404265020024
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4866,6 +4868,7 @@ GameObject:
   - component: {fileID: 4467954268304637304}
   - component: {fileID: 3150295483603212081}
   - component: {fileID: 544582615383139999}
+  - component: {fileID: 755566184283811712}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -5108,7 +5111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 694869e75f925f843b7c984ba6061f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 1000000
   hpBar: {fileID: 0}
   DeathScreen: {fileID: 0}
   HUD: {fileID: 0}
@@ -5125,7 +5128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 360
-  moveSpeed: 3.5
+  moveSpeed: 2
 --- !u!114 &1608677357601109311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5139,7 +5142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons:
-  - {fileID: 321765257242219588}
+  - {fileID: 5582028780481179350}
 --- !u!114 &4467954268304637304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5183,6 +5186,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f03b64a084f9034e854b6820f5cb199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &755566184283811712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512025360035211242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d76aec85113d84c8a07a5a1b1174d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 1.5
+  BPSAdditive: 1
 --- !u!1 &4885022728853708193
 GameObject:
   m_ObjectHideFlags: 0

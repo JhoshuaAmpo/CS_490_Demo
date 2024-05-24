@@ -8,9 +8,7 @@ using UnityEngine.PlayerLoop;
 public class BubbleGun : BaseWeapon
 {
     ParticleSystem ps;
-    [Min(0)]
     public float BubbleDuration;
-    [Min(0)]
     public float BubbleSpeed;
     private void Awake() {
         ps = GetComponent<ParticleSystem>();

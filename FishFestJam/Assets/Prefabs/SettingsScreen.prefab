@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
 --- !u!114 &365470233971723632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,6 +1490,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30907a776252bc84990e1dedcfd3b87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
+  altCtrlToggle: {fileID: 0}
 --- !u!1 &3033434933261014423
 GameObject:
   m_ObjectHideFlags: 0

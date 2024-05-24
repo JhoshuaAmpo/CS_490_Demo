@@ -184,16 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d98b7e257a665849a4d7b7bb45275dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed:
-    Value: 0.77
-    IsInt: 0
-    TimeBetweenUpgrades: 1
-    MultiplierValue: 1
-    AddendValue: 0
-    IsClamp: 2
-    ClampVal: 0
-    statTimer: {fileID: 0}
-  delayBetweenSwims:
+  enemyStatSO: {fileID: 0}
+  selfDmg:
     Value: 0
     IsInt: 0
     TimeBetweenUpgrades: 1
@@ -201,41 +193,6 @@ MonoBehaviour:
     AddendValue: 0
     IsClamp: 2
     ClampVal: 0
+    MaxTime: 0
+    upgradeChart: []
     statTimer: {fileID: 0}
-  attackDamage:
-    Value: 0
-    IsInt: 0
-    TimeBetweenUpgrades: 1
-    MultiplierValue: 1
-    AddendValue: 0
-    IsClamp: 2
-    ClampVal: 0
-    statTimer: {fileID: 0}
-  turnSpeed:
-    Value: 0
-    IsInt: 0
-    TimeBetweenUpgrades: 1
-    MultiplierValue: 1
-    AddendValue: 0
-    IsClamp: 2
-    ClampVal: 0
-    statTimer: {fileID: 0}
-  expDrop:
-    Value: 0
-    IsInt: 0
-    TimeBetweenUpgrades: 1
-    MultiplierValue: 1
-    AddendValue: 0
-    IsClamp: 2
-    ClampVal: 0
-    statTimer: {fileID: 0}
-  maxHp:
-    Value: 0
-    IsInt: 0
-    TimeBetweenUpgrades: 1
-    MultiplierValue: 1
-    AddendValue: 0
-    IsClamp: 2
-    ClampVal: 0
-    statTimer: {fileID: 0}
-  selfDmg: 10

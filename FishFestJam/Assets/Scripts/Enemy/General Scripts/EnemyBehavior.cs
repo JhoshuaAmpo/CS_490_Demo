@@ -17,7 +17,7 @@ public abstract class EnemyBehavior : MonoBehaviour
     protected EnemyStat expDrop;
     protected EnemyStat maxHp;
     protected GameObject target;
-    private float HealthPoints;
+    protected float HealthPoints;
     private Timer swimTimer;
 
     BoxCollider2D boxCollider2D;
